@@ -6,7 +6,7 @@
 
 body {
   font-family: 'Segoe UI', sans-serif;
-  background: url("../imagenesAssets/fondo-vivero.png") no-repeat center center fixed;
+  background: url("../imagenes/assets/fondo-vivero.png") no-repeat center center fixed;
   background-size: cover;
   display: flex;
   justify-content: center;
