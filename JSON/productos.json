@@ -4,7 +4,8 @@
         "nombre":"venus atrapamoscas",
         "categoria":4,
         "stock":false,
-        "precio":10000.00
+        "precio":10000.00,
+        "imagen":"../imagenes/datos/productos/venus_atrapamoscas.jpg"
         
     },
     {
@@ -12,7 +13,8 @@
         "nombre":"yerba mate",
         "categoria":5,
         "stock":true,
-        "precio":4000.00
+        "precio":4000.00,
+        "imagen":"../imagenes/datos/productos/yerba_mate.jpg"
         
     },
     {
@@ -20,7 +22,8 @@
         "nombre":"ramo de margaritas",
         "categoria":1,
         "stock":true,
-        "precio":3000.00
+        "precio":3000.00,
+        "imagen":"../imagenes/datos/productos/ramo margaritas.jpg"
         
     },
     {
@@ -28,7 +31,8 @@
         "nombre":"clavel del aire",
         "categoria":1,
         "stock":true,
-        "precio":302.32
+        "precio":302.32,
+        "imagen":"../imagenes/datos/productos/clavel_del_aire.jpg"
         
     },
     {
@@ -36,7 +40,8 @@
         "nombre":"maceta plastico cuadrada 20cm x 30cm",
         "categoria":0,
         "stock":true,
-        "precio":1700.02123
+        "precio":1700.02123,
+        "imagen":"../imagenes/datos/productos/maceta_plastico_30_x_25.webp"
         
     },
     {
@@ -44,7 +49,8 @@
         "nombre":"sanguche de miga",
         "categoria":-2,
         "stock":true,
-        "precio":2000.00
+        "precio":2000.00,
+        "imagen":"../imagenes/datos/productos/sanguche_de_miga.jpg"
         
     },
     {
@@ -52,7 +58,8 @@
         "nombre":"álamo",
         "categoria":2,
         "stock":true,
-        "precio":15000.00
+        "precio":15000.00,
+        "imagen":"../imagenes/datos/productos/álamo.jpg"
         
     },
     {
@@ -60,7 +67,8 @@
         "nombre":"zapallo",
         "categoria":3,
         "stock":false,
-        "precio":6000.00
+        "precio":6000.00,
+        "imagen":"../imagenes/datos/productos/planta_de_zapallo.jpg"
         
     },
     {
@@ -68,7 +76,8 @@
         "nombre":"lirio",
         "categoria":1,
         "stock":true,
-        "precio":4000.00
+        "precio":4000.00,
+        "imagen":"../imagenes/datos/productos/lirios.jpg"
         
     },
     {
@@ -76,7 +85,8 @@
         "nombre":"hongo hermoso",
         "categoria":4,
         "stock":false,
-        "precio":8000.00
+        "precio":8000.00,
+        "imagen":"../imagenes/datos/productos/hongo_hermoso.jpg"
         
     },
     {
@@ -84,7 +94,8 @@
         "nombre":"semillas álamo",
         "categoria":2,
         "stock":true,
-        "precio":3000.00
+        "precio":3000.00,
+        "imagen":"../imagenes/datos/productos/alamo_semillas.jpg"
         
     },
     {
@@ -92,7 +103,8 @@
         "nombre":"BURRITO",
         "categoria":5,
         "stock":true,
-        "precio":4000.20
+        "precio":4000.20,
+        "imagen":"../imagenes/datos/productos/burrito.jpg"
 
     }
 ]

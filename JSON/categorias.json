@@ -2,37 +2,37 @@
 {
     "id":0,
     "nombre":"otros--no-plantas",
-    "imagen":"../imagenes/datos/categorias/arch.png"    
+    "imagen":"../imagenes/datos/categorias/otros--no-plantas.png"    
 },
 {
     "id":1,
     "nombre":"flores",
-    "imagen":"../imagenes/datos/categorias/fedora.png"    
+    "imagen":"../imagenes/datos/categorias/flores.png"    
 },
 {
     "id":2,
     "nombre":"arboles",
-    "imagen":"../imagenes/datos/categorias/lubuntu.png"    
+    "imagen":"../imagenes/datos/categorias/arboles.png"    
 },
 {
     "id":3,
     "nombre":"cultivos",
-    "imagen":"../imagenes/datos/categorias/garuda.png"    
+    "imagen":"../imagenes/datos/categorias/cultivos.png"    
 },
 {
     "id":4,
     "nombre":"exoticos",
-    "imagen":"../imagenes/datos/categorias/pop-os.png"    
+    "imagen":"../imagenes/datos/categorias/exoticas.webp"    
 },
 {
     "id":5,
     "nombre":"para-el-mate",
-    "imagen":"../imagenes/datos/categorias/zorin.png"    
+    "imagen":"../imagenes/datos/categorias/para-el-mate.png"    
 },
 {
     "id":6,
     "nombre":"cactus-y-suculentas",
-    "imagen":"../imagenes/datos/categorias/mint.png"    
+    "imagen":"../imagenes/datos/categorias/cactus-y-suculentas.png"    
 }
 
 ]

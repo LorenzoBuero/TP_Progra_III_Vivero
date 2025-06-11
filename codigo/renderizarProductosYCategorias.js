@@ -8,14 +8,30 @@ const renderizarCategorias = (categorias) =>
     
     HTMLAModificar = document.querySelector("#categorias-grid")
     categorias.forEach(categoria => {
-        console.log(categoria);
         
-        HTMLAModificar.innerHTML += `<div id="${categoria.id}" class="tarjeta-categoria">
+        HTMLAModificar.innerHTML += `<div id="cat-${categoria.id}" class="tarjeta-categoria">
                                         <img src="${categoria.imagen}" alt="${categoria.nombre}">
                                     </div>`;
                            
     });
 
+
+}
+
+const renderizarProductos = (productos) =>
+{
+        HTMLAModificar = document.querySelector("#product-grid")
+    productos.forEach(productos => {
+        if(productos.stock)
+            {
+                HTMLAModificar.innerHTML += `<div id="prod-${productos.id}" class="tarjeta-producto">
+                                        <img src="${productos.imagen}" alt="${productos.nombre}">
+                                        <p>${productos.nombre}</p>
+                                    </div>`;
+         
+            }
+                          
+    });
 
 }
 
@@ -32,20 +48,28 @@ const renderizarCategorias = (categorias) =>
                                             <button class="add-to-cart" onclick="clickAgregarAlCarrito('${fruta.nombre}', '${fruta.precio}')">Agregar a carrito</button>
                                         </div>`*/
 
-const obtenerJSON = async (url) => 
+const obtenerJSON = async (url, cosa) => 
 {
     const response = await fetch(url);
     const arrayJson = await (response).json();
     
-    renderizarCategorias(arrayJson);
+    if(cosa ==="s")
+    {
+        renderizarCategorias(arrayJson);
+    }
+    else
+    {
+        renderizarProductos(arrayJson)
+    }
+        
     return arrayJson;
 }
 
 const jsonCategorias = "../JSON/categorias.json";
-//const jsonProductos = "../JSON/productos.json";
+const jsonProductos = "../JSON/productos.json";
 
-let categorias = obtenerJSON(jsonCategorias);
-//let productos = obtenerJSON(jsonProductos);
+let categorias = obtenerJSON(jsonCategorias, "s");
+let productos = obtenerJSON(jsonProductos, "ssasasas");
 
 
 
