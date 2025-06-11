@@ -1,0 +1,38 @@
+[
+{
+    "id":0,
+    "nombre":"otros--no-plantas",
+    "imagen":"../imagenes/datos/categorias/arch.png"    
+},
+{
+    "id":1,
+    "nombre":"flores",
+    "imagen":"../imagenes/datos/categorias/fedora.png"    
+},
+{
+    "id":2,
+    "nombre":"arboles",
+    "imagen":"../imagenes/datos/categorias/lubuntu.png"    
+},
+{
+    "id":3,
+    "nombre":"cultivos",
+    "imagen":"../imagenes/datos/categorias/garuda.png"    
+},
+{
+    "id":4,
+    "nombre":"exoticos",
+    "imagen":"../imagenes/datos/categorias/pop-os.png"    
+},
+{
+    "id":5,
+    "nombre":"para-el-mate",
+    "imagen":"../imagenes/datos/categorias/zorin.png"    
+},
+{
+    "id":6,
+    "nombre":"cactus-y-suculentas",
+    "imagen":"../imagenes/datos/categorias/mint.png"    
+}
+
+]

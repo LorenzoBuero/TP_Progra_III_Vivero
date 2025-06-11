@@ -16,7 +16,7 @@ cargarPagina();
 usar el script al final del body
 */
 
-console.log("hola")
+console.log("hola");
 
 function cargarPagina() {
     const botonCargado = document.querySelector(".boton-ingresar");

@@ -1,0 +1,98 @@
+[
+    {
+        "id":1,
+        "nombre":"venus atrapamoscas",
+        "categoria":4,
+        "stock":false,
+        "precio":10000.00
+        
+    },
+    {
+        "id":2,
+        "nombre":"yerba mate",
+        "categoria":5,
+        "stock":true,
+        "precio":4000.00
+        
+    },
+    {
+        "id":3,
+        "nombre":"ramo de margaritas",
+        "categoria":1,
+        "stock":true,
+        "precio":3000.00
+        
+    },
+    {
+        "id":4,
+        "nombre":"clavel del aire",
+        "categoria":1,
+        "stock":true,
+        "precio":302.32
+        
+    },
+    {
+        "id":5,
+        "nombre":"maceta plastico cuadrada 20cm x 30cm",
+        "categoria":0,
+        "stock":true,
+        "precio":1700.02123
+        
+    },
+    {
+        "id":6,
+        "nombre":"sanguche de miga",
+        "categoria":-2,
+        "stock":true,
+        "precio":2000.00
+        
+    },
+    {
+        "id":7,
+        "nombre":"álamo",
+        "categoria":2,
+        "stock":true,
+        "precio":15000.00
+        
+    },
+    {
+        "id":8,
+        "nombre":"zapallo",
+        "categoria":3,
+        "stock":false,
+        "precio":6000.00
+        
+    },
+    {
+        "id":9,
+        "nombre":"lirio",
+        "categoria":1,
+        "stock":true,
+        "precio":4000.00
+        
+    },
+    {
+        "id":10,
+        "nombre":"hongo hermoso",
+        "categoria":4,
+        "stock":false,
+        "precio":8000.00
+        
+    },
+    {
+        "id":11,
+        "nombre":"semillas álamo",
+        "categoria":2,
+        "stock":true,
+        "precio":3000.00
+        
+    },
+    {
+        "id":12,
+        "nombre":"BURRITO",
+        "categoria":5,
+        "stock":true,
+        "precio":4000.20
+
+    }
+]

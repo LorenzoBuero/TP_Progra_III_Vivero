@@ -149,3 +149,13 @@ a {
   font-size: 1.2rem;
   text-align: right;
 }
+
+.tarjeta-categoria
+{
+  width: 50px;
+
+}
+.tarjeta-categoria img
+{
+  width: 100%;
+}
