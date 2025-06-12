@@ -7,9 +7,11 @@ const renderizarCategorias = (categorias) =>
     
     
     HTMLAModificar = document.querySelector("#categorias-grid")
+    
+    
     categorias.forEach(categoria => {
         
-        HTMLAModificar.innerHTML += `<div id="cat-${categoria.id}" class="tarjeta-categoria">
+        HTMLAModificar.innerHTML += `<div id="cat-${categoria.id}" onclick="cambiarCategoria(${categoria.id})" class="tarjeta-categoria">
                                         <img src="${categoria.imagen}" alt="${categoria.nombre}">
                                     </div>`;
                            
@@ -18,48 +20,54 @@ const renderizarCategorias = (categorias) =>
 
 }
 
-const renderizarProductos = (productos) =>
+
+const cambiarCategoria = (idCategoria) =>
+    {
+        console.log("plop");
+
+        let asidfmawd = obtenerJSON(jsonProductos, idCategoria);
+
+    }
+
+const renderizarProductos = (productos, IDCategoria) =>
 {
         HTMLAModificar = document.querySelector("#product-grid")
-    productos.forEach(productos => {
-        if(productos.stock)
-            {
-                HTMLAModificar.innerHTML += `<div id="prod-${productos.id}" class="tarjeta-producto">
-                                        <img src="${productos.imagen}" alt="${productos.nombre}">
-                                        <p>${productos.nombre}</p>
-                                    </div>`;
-         
-            }
+
+
+        HTMLAModificar.innerHTML = ""
+
+
+        productos.forEach(producto => {
+            if(producto.stock && producto.categoria === IDCategoria)
+                {
+                    HTMLAModificar.innerHTML += `<div id="prod-${producto.id}" class="tarjeta-producto">
+                                            <img src="${producto.imagen}" alt="${producto.nombre}">
+                                            <p>${producto.nombre}</p>
+                                        </div>`;
+            
+                }
                           
     });
 
 }
 
-/*  const lugarDeLasFrutas = document.querySelector(".product-grid");
-    lugarDeLasFrutas.innerHTML = "";
-    console.log("falalalalal")
-    frutas.forEach(fruta => {
-        
 
-        lugarDeLasFrutas.innerHTML += `<div class="product-card">
-                                            <img src="${fruta.img}" alt="${fruta.nombre}">
-                                            <h3>${fruta.nombre}</h3>
-                                            <p>$${fruta.precio}</p>
-                                            <button class="add-to-cart" onclick="clickAgregarAlCarrito('${fruta.nombre}', '${fruta.precio}')">Agregar a carrito</button>
-                                        </div>`*/
+
 
 const obtenerJSON = async (url, cosa) => 
 {
     const response = await fetch(url);
     const arrayJson = await (response).json();
     
-    if(cosa ==="s")
+
+    //ESTO ESTA RE MAL, BUSCAR UN MEJOR METODO
+    if(cosa === -1)
     {
         renderizarCategorias(arrayJson);
     }
     else
     {
-        renderizarProductos(arrayJson)
+        renderizarProductos(arrayJson, cosa)
     }
         
     return arrayJson;
@@ -68,8 +76,21 @@ const obtenerJSON = async (url, cosa) =>
 const jsonCategorias = "../JSON/categorias.json";
 const jsonProductos = "../JSON/productos.json";
 
-let categorias = obtenerJSON(jsonCategorias, "s");
-let productos = obtenerJSON(jsonProductos, "ssasasas");
+let arrayCategorias = obtenerJSON(jsonCategorias, -1);
+let arrayProductos = obtenerJSON(jsonProductos, 1);
+
+//esto deberia ser así
+/*
+let arrayCategorias = obtenerJSON(jsonCategorias);
+let arrayProductos = obtenerJSON(jsonProductos);
+
+
+renderizarCategorias(arrayCategorias)
+renderizarProductos(arrayProductos)
+*/
+
+//let categorias = obtenerJSON(jsonCategorias);
+//let productos = obtenerJSON(jsonProductos);
 
 
 
