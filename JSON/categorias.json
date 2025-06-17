@@ -2,7 +2,7 @@
 {
     "id":0,
     "nombre":"otros--no-plantas",
-    "imagen":"../imagenes/datos/categorias/otros--no-plantas.png"    
+    "imagen":"../imagenes/datos/categorias/no-plantas.png"    
 },
 {
     "id":1,
@@ -22,7 +22,7 @@
 {
     "id":4,
     "nombre":"exoticos",
-    "imagen":"../imagenes/datos/categorias/exoticas.webp"    
+    "imagen":"../imagenes/datos/categorias/Planta-atrapamoscas.png"    
 },
 {
     "id":5,

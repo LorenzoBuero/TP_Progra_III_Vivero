@@ -3,53 +3,63 @@
 //TODO EL CODIGO DE ESTE ARCHIVO ES RECONTRA PROVISIONAL
 
 //PONE LAS CATEGORIAS EN PANTALLA JUNTO A SU EVENTO DE ONCLICK
-const renderizarCategorias = (categorias) => 
-{
-    
-    
-    HTMLAModificar = document.querySelector("#categorias-grid")
-    
-    
-    categorias.forEach(categoria => {
-        
-        HTMLAModificar.innerHTML += `<div id="cat-${categoria.id}" onclick="cambiarCategoria(${categoria.id})" class="tarjeta-categoria">
-                                        <img src="${categoria.imagen}" alt="${categoria.nombre}">
-                                    </div>`;
-                           
-    });
+let categoriaSeleccionada = null;
 
+const renderizarCategorias = (categorias) => {
+    const contenedor = document.querySelector("#categorias-grid");
+    contenedor.innerHTML = "";
+
+    categorias.forEach(categoria => {
+        const div = document.createElement("div");
+        div.classList.add("tarjeta-categoria");
+        div.innerHTML = `<img src="${categoria.imagen}" alt="${categoria.nombre}">`;
+
+        div.addEventListener("click", () => {
+            cambiarCategoria(categoria.id);
+
+            // Quitar clase activa de todas
+            document.querySelectorAll(".tarjeta-categoria").forEach(el => {
+                el.classList.remove("activa");
+            });
+
+            // Agregar clase activa a esta
+            div.classList.add("activa");
+        });
+
+        contenedor.appendChild(div);
+    });
+};
+
+//Es llamado cuando se clickea una categoria, vuelve a renderizar los productos que sean de esa categoria
+const cambiarCategoria = async (idCategoria) => {
+    console.log("plop");
+
+    let asidfmawd = obtenerJSON(jsonProductos, idCategoria);
 
 }
 
-//Es llamado cuando se clickea una categoria, vuelve a renderizar los productos que sean de esa categoria
-const cambiarCategoria = async (idCategoria) =>
-    {
-        console.log("plop");
-
-        let asidfmawd = obtenerJSON(jsonProductos, idCategoria);
-
-    }
-
 
 //renderiza los productos cuya categoria sea la misma a la pasada por parametro
-const renderizarProductos = (productos, IDCategoria) =>
-{
-        HTMLAModificar = document.querySelector("#product-grid")
+const renderizarProductos = (productos, IDCategoria) => {
+    HTMLAModificar = document.querySelector("#product-grid")
 
 
-        HTMLAModificar.innerHTML = ""
+    HTMLAModificar.innerHTML = ""
 
 
-        productos.forEach(producto => {
-            if(producto.stock && producto.categoria === IDCategoria)
-                {
-                    HTMLAModificar.innerHTML += `<div id="prod-${producto.id}" class="tarjeta-producto">
-                                            <img src="${producto.imagen}" alt="${producto.nombre}">
-                                            <p>${producto.nombre}</p>
-                                        </div>`;
-            
-                }
-                          
+    productos.forEach(producto => {
+        if (producto.stock && producto.categoria === IDCategoria) {
+            HTMLAModificar.innerHTML += `
+  <div id="prod-${producto.id}" class="tarjeta-producto">
+    <img src="${producto.imagen}" alt="${producto.nombre}">
+    <p>${producto.nombre}</p>
+    <p><strong>$${producto.precio.toFixed(2)}</strong></p>
+    <button class="boton-agregar" onclick="agregarAlCarrito(${producto.id})">Agregar al carrito</button>
+  </div>
+`;
+
+        }
+
     });
 
 }
@@ -60,22 +70,19 @@ const renderizarProductos = (productos, IDCategoria) =>
 //se inicializa la pagina
 //ESO ESTÁ MAL, DEBERIA RETORNAR UN ARRAY, PERO COMO EL RETORNO ES
 //UNA PROMESA ASINCRONA EL CÓDIGO QUE USA ESE VALOR RETORNADO ANDA MAL
-const obtenerJSON = async (url, cosa) => 
-{
+const obtenerJSON = async (url, cosa) => {
     const response = await fetch(url);
     const arrayJson = await (response).json();
-    
+
 
     //ESTO ESTA RE MAL, BUSCAR UN MEJOR METODO
-    if(cosa === -1)
-    {
+    if (cosa === -1) {
         renderizarCategorias(arrayJson);
     }
-    else
-    {
+    else {
         renderizarProductos(arrayJson, cosa)
     }
-        
+
     return arrayJson;
 }
 
