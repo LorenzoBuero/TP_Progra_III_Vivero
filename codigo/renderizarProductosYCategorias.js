@@ -22,7 +22,7 @@ const renderizarCategorias = (categorias) =>
 }
 
 //Es llamado cuando se clickea una categoria, vuelve a renderizar los productos que sean de esa categoria
-const cambiarCategoria = (idCategoria) =>
+const cambiarCategoria = async (idCategoria) =>
     {
         console.log("plop");
 
