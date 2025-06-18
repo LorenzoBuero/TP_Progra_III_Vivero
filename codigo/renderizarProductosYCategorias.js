@@ -1,5 +1,5 @@
 
-
+/*
 //TODO EL CODIGO DE ESTE ARCHIVO ES RECONTRA PROVISIONAL
 
 //PONE LAS CATEGORIAS EN PANTALLA JUNTO A SU EVENTO DE ONCLICK
@@ -91,17 +91,18 @@ const jsonProductos = "../JSON/productos.json";
 
 let arrayCategorias = obtenerJSON(jsonCategorias, -1);
 let arrayProductos = obtenerJSON(jsonProductos, 1);
-
+*/
 //TODO EL CODIGO DEBERIA SER MASOMENOS ASÍ
-/*
+
 //FUNCIONES
-const renderizarCategorias = (categorias) => 
+const renderizarCategorias = async () => 
 {
-    
+    const URLCategorias = "../JSON/categorias.json";
+    let categorias = await obtenerJSON(URLCategorias);
     
     HTMLAModificar = document.querySelector("#categorias-grid")
-    
-    
+
+
     categorias.forEach(categoria => {
 
         //agregar el evento con addEventListener en vez de usando el HTML
@@ -119,15 +120,16 @@ const cambiarCategoria = (idCategoria) =>
     {
         console.log("plop");
 
-        renderizarProductos(JSONProductos, idCategoria)
+        renderizarProductos(idCategoria)
 
     }
 
-const renderizarProductos = (productos, IDCategoria) =>
+const renderizarProductos = async (IDCategoria) =>
 {
+    const URLProductos = "../JSON/productos.json";
+    let productos = await obtenerJSON(URLProductos);
+
     HTMLAModificar = document.querySelector("#product-grid")
-
-
     HTMLAModificar.innerHTML = ""
 
 
@@ -146,8 +148,6 @@ const renderizarProductos = (productos, IDCategoria) =>
 }
 
 
-
-
 const obtenerJSON = async (url) => 
 {
     const response = await fetch(url);
@@ -156,50 +156,13 @@ const obtenerJSON = async (url) =>
     return arrayJson;
 }
 
-obtenerJSONCategorias()
-{
-    const jsonCategorias = "../JSON/categorias.json";
-    return obtenerJSON(jsonCategorias);
-}
-obtenerJSONProductos()
-{
-    const jsonCategorias = "../JSON/productos.json";
-    return obtenerJSON(jsonProductos);
-}
 
-
-
-const jsonProductos = "../JSON/productos.json";
-
-let arrayCategorias = obtenerJSON(jsonCategorias);
-let arrayProductos = obtenerJSON(jsonProductos);
 
 
 const CATEGORIA_DEFAULT = 1;
 
-renderizarCategorias(arrayCategorias)
-renderizarProductos(arrayProductos, CATEGORIA_DEFAULT)
-*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+renderizarCategorias()
+renderizarProductos(CATEGORIA_DEFAULT)
 
 
 
