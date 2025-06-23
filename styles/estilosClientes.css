@@ -1,4 +1,3 @@
-/* Navbar */
 nav.navbar {
   background-color: #2e7d32;
   color: white;
@@ -40,7 +39,6 @@ main {
   gap: 20px;
   padding: 20px;
 }
-
 
 #categorias-grid {
   display: flex;
@@ -123,4 +121,3 @@ main {
 .boton-agregar:hover {
   background-color: #2e7d32;
 }
-
