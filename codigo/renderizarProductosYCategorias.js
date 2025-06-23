@@ -80,12 +80,22 @@ const obtenerJSON = async (url) => {
 
 //  Función de carrito (provisoria)
 function agregarAlCarrito(producto) {
-  console.log("Agregado al carrito:", producto.nombre);
-  // Más adelante: agregar al array de carrito y actualizar contador
-  carrito.push(producto)
-  console.log(carrito)
-  renderizarItemsCarrito(carrito)
+  let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+  // Ver si el producto ya está en el carrito
+  const productoExistente = carrito.find(item => item.id === producto.id);
+
+  if (productoExistente) {
+    productoExistente.cantidad += 1;
+  } else {
+    producto.cantidad = 1;
+    carrito.push(producto);
+  }
+
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+  renderizarItemsCarrito();
 }
+
 
 // ================================
 // INICIO DEL SISTEMA
@@ -98,7 +108,18 @@ function agregarAlCarrito(producto) {
   renderizarProductos(productosGlobal, CATEGORIA_DEFAULT);
 })();
 
-function renderizarItemsCarrito(carrito){
-    itemsCarrito = document.querySelector("#cart-count");
-    itemsCarrito.textContent = carrito.length;
+function actualizarContadorCarrito() {
+  const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+  let cantidad = 0;
+  for (let i = 0; i < carrito.length; i++) {
+    cantidad += carrito[i].cantidad;
+  }
+
+  const contador = document.getElementById("cart-count");
+  if (contador) {
+    contador.textContent = cantidad;
+  }
 }
+
+// Llamamos directamente
+actualizarContadorCarrito();
