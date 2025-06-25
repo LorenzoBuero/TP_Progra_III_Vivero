@@ -5,16 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Carrito de Compras</title>
   <link rel="stylesheet" href="../styles/carrito.css" />
+  <link rel="stylesheet" href="../styles/estiloGeneral.css" />
 </head>
 <body>
 
-  <nav class="navbar">
-    <div class="logo">🌿 Vivero Natural</div>
-    <div class="nombreAlumno"></div>
-    <div class="cart">
-      <span><strong>🛒 Carrito:</strong> <span id="cart-count">0</span> productos</span>
-    </div>
-  </nav>
+  <!-- Navbar -->
+    <nav id="navbar">
+
+        <div id="nav-logo-y-nombre"><span class="logo">🌿 Vivero Natural</span></div>
+        <div id="nav-nombres-autores"><span class="nombreAlumno"> </span></div>
+        <div id="nav-carrito">
+            <a href="pagCliente.html" class="cart">
+                <strong>Seguir comprando </strong><span id="cart-count">0</span> productos
+            </a><!--HABRIA QUE MEJORAR ESTA PARTE-->
+        </div>
+
+    </nav>
 
   <main class="cart-section">
     <h2>🛍️ Tu Carrito</h2>
@@ -28,8 +34,8 @@
     </div>
 
     <div class="acciones-carrito">
-      <button id="btn-confirmar-compra">Confirmar Compra</button>
-      <button id="btn-vaciar-carrito">Vaciar Carrito</button>
+      <button id="btn-confirmar-compra" class="boton verde">Confirmar Compra</button>
+      <button id="btn-vaciar-carrito" class="boton rojo">Vaciar Carrito</button>
     </div>
   </main>
 

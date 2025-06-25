@@ -32,7 +32,7 @@ const renderizarCarrito = () => {
     li.innerHTML = `
       <span class="item-name">${producto.nombre}</span>
       <span class="info-carrito">Precio: $${producto.precio.toFixed(2)} | Cantidad: ${producto.cantidad}</span>
-      <button class="delete-button" data-index="${index}">Eliminar</button>
+      <button class="delete-button boton rojo" data-index="${index}">Eliminar</button>
     `;
 
     lista.appendChild(li);

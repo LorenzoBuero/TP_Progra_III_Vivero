@@ -13,7 +13,7 @@ const CATEGORIA_DEFAULT = 1;
 
 // Renderiza las categorías en pantalla
 const renderizarCategorias = (categorias) => {
-  const contenedor = document.querySelector("#categorias-grid");
+  const contenedor = document.querySelector("#grid-categorias-DOM");
   contenedor.innerHTML = "";
 
   categorias.forEach((categoria, index) => {
@@ -37,14 +37,14 @@ const renderizarCategorias = (categorias) => {
   });
 };
 
-//  Cuando se hace clic en una categoría
+//  Cuando se hace clic en una categoría, es un evento
 const cambiarCategoria = (idCategoria) => {
   renderizarProductos(productosGlobal, idCategoria);
 };
 
 //  Renderiza los productos filtrados por categoría
 const renderizarProductos = (productos, IDCategoria) => {
-  const contenedor = document.querySelector("#product-grid");
+  const contenedor = document.querySelector("#grid-productos-DOM");
   contenedor.innerHTML = "";
 
   productosVisibles = productos.filter(p => p.stock && p.categoria === IDCategoria);
@@ -55,7 +55,7 @@ const renderizarProductos = (productos, IDCategoria) => {
         <img src="${producto.imagen}" alt="${producto.nombre}">
         <p>${producto.nombre}</p>
         <p><strong>$${producto.precio.toFixed(2)}</strong></p>
-        <button class="boton-agregar">Agregar al carrito</button>
+        <button class="boton-agregar boton verde">Agregar al carrito</button>
       </div>
     `;
   });
