@@ -5,6 +5,8 @@ nav.navbar {
   justify-content: space-between;
   align-items: center;
   padding: 15px 30px;
+  position: fixed;
+  width: 100%;
 }
 
 .logo {
