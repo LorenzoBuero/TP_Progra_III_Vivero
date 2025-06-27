@@ -12,93 +12,180 @@ const CATEGORIA_DEFAULT = 1;
 // ================================
 
 // Renderiza las categorías en pantalla
-const renderizarCategorias = (categorias) => {
-  const contenedor = document.querySelector("#categorias-grid");
+function renderizarCategorias(categorias) {
+  const contenedor = document.querySelector("#grid-categorias-DOM");
   contenedor.innerHTML = "";
 
-  categorias.forEach((categoria, index) => {
+  for (let i = 0; i < categorias.length; i++) {
+    const categoria = categorias[i];
     const div = document.createElement("div");
     div.classList.add("tarjeta-categoria");
     div.innerHTML = `<img src="${categoria.imagen}" alt="${categoria.nombre}">`;
 
-    div.addEventListener("click", () => {
+    div.addEventListener("click", function () {
+      categoriaSeleccionada = categoria.id;
       cambiarCategoria(categoria.id);
 
-      // Quitar clase activa de todas
-      document.querySelectorAll(".tarjeta-categoria").forEach(el => {
-        el.classList.remove("activa");
-      });
+      const todas = document.querySelectorAll(".tarjeta-categoria");
+      for (let j = 0; j < todas.length; j++) {
+        todas[j].classList.remove("activa");
+      }
 
-      // Agregar clase activa a la seleccionada
       div.classList.add("activa");
     });
 
     contenedor.appendChild(div);
-  });
-};
+  }
+}
 
-//  Cuando se hace clic en una categoría
-const cambiarCategoria = (idCategoria) => {
+// Cambia la categoría actual
+function cambiarCategoria(idCategoria) {
   renderizarProductos(productosGlobal, idCategoria);
-};
+}
 
-//  Renderiza los productos filtrados por categoría
-const renderizarProductos = (productos, IDCategoria) => {
-  const contenedor = document.querySelector("#product-grid");
+// Renderiza los productos de una categoría
+function renderizarProductos(productos, IDCategoria) {
+  const contenedor = document.querySelector("#grid-productos-DOM");
   contenedor.innerHTML = "";
 
-  productosVisibles = productos.filter(p => p.stock && p.categoria === IDCategoria);
+  productosVisibles = [];
 
-  productosVisibles.forEach(producto => {
-    contenedor.innerHTML += `
-      <div id="prod-${producto.id}" class="tarjeta-producto">
-        <img src="${producto.imagen}" alt="${producto.nombre}">
-        <p>${producto.nombre}</p>
-        <p><strong>$${producto.precio.toFixed(2)}</strong></p>
-        <button class="boton-agregar">Agregar al carrito</button>
-      </div>
-    `;
-  });
+  for (let i = 0; i < productos.length; i++) {
+    const producto = productos[i];
+    if (producto.stock === true && producto.categoria === IDCategoria) {
+      productosVisibles[productosVisibles.length] = producto;
 
-  // Asignar eventos a los botones
+      contenedor.innerHTML += `
+        <div class="tarjeta-producto">
+          <img src="${producto.imagen}" alt="${producto.nombre}">
+          <p>${producto.nombre}</p>
+          <p><strong>$${producto.precio}</strong></p>
+          <button class="boton-agregar boton verde">Agregar al carrito</button>
+        </div>
+      `;
+    }
+  }
+
   const botonesAgregar = document.querySelectorAll(".boton-agregar");
 
-  botonesAgregar.forEach((boton, i) => {
-    boton.addEventListener("click", () => {
-      const productoSeleccionado = productosVisibles[i];
-      agregarAlCarrito(productoSeleccionado);
+  for (let i = 0; i < botonesAgregar.length; i++) {
+    botonesAgregar[i].addEventListener("click", function () {
+      agregarAlCarrito(productosVisibles[i]);
     });
-  });
-};
-
-//  Función genérica para obtener JSON
-const obtenerJSON = async (url) => {
-  const response = await fetch(url);
-  const arrayJson = await response.json();
-  return arrayJson;
-};
-
-//  Función de carrito (provisoria)
-function agregarAlCarrito(producto) {
-  console.log("Agregado al carrito:", producto.nombre);
-  // Más adelante: agregar al array de carrito y actualizar contador
-  carrito.push(producto)
-  console.log(carrito)
-  renderizarItemsCarrito(carrito)
+  }
 }
+
+// Obtiene un JSON desde una URL
+async function obtenerJSON(url) {
+  const response = await fetch(url);
+  const data = await response.json();
+  return data;
+}
+
+// Agrega un producto al carrito
+function agregarAlCarrito(producto) {
+  let carritoGuardado = JSON.parse(localStorage.getItem("carrito")) || [];
+
+  let encontrado = false;
+  for (let i = 0; i < carritoGuardado.length; i++) {
+    if (carritoGuardado[i].id === producto.id) {
+      carritoGuardado[i].cantidad = carritoGuardado[i].cantidad + 1;
+      encontrado = true;
+    }
+  }
+
+  if (encontrado === false) {
+    producto.cantidad = 1;
+    carritoGuardado[carritoGuardado.length] = producto;
+  }
+
+  localStorage.setItem("carrito", JSON.stringify(carritoGuardado));
+  actualizarContadorCarrito();
+}
+
+// Actualiza el contador del carrito
+function actualizarContadorCarrito() {
+  const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+  let cantidad = 0;
+
+  for (let i = 0; i < carrito.length; i++) {
+    cantidad = cantidad + carrito[i].cantidad;
+  }
+
+  const contador = document.getElementById("cart-count");
+  if (contador) {
+    contador.textContent = cantidad;
+  }
+}
+
+// Filtra productos por nombre
+function buscarProductosPorNombre(texto) {
+  const textoBuscado = texto.toLowerCase();
+  let productosBarraNavegacion = [];
+
+  for (let i = 0; i < productosVisibles.length; i++) {
+    if (productosVisibles[i].nombre.toLowerCase().includes(textoBuscado)) {
+      productosBarraNavegacion[productosBarraNavegacion.length] = productosVisibles[i];
+    }
+  }
+
+  const contenedor = document.querySelector("#grid-productos-DOM");
+  contenedor.innerHTML = "";
+
+  for (let i = 0; i < productosBarraNavegacion.length; i++) {
+    const producto = productosBarraNavegacion[i];
+    contenedor.innerHTML += `
+      <div class="tarjeta-producto">
+        <img src="${producto.imagen}" alt="${producto.nombre}">
+        <p>${producto.nombre}</p>
+        <p><strong>$${producto.precio}</strong></p>
+        <button class="boton-agregar boton verde">Agregar al carrito</button>
+      </div>
+    `;
+  }
+
+  const botones = document.querySelectorAll(".boton-agregar");
+
+  for (let i = 0; i < botones.length; i++) {
+    botones[i].addEventListener("click", function () {
+      agregarAlCarrito(productosBarraNavegacion[i]);
+    });
+  }
+}
+
+// Evento para la barra de búsqueda
+const inputBusqueda = document.getElementById("buscador-productos");
+
+inputBusqueda.addEventListener("input", function () {
+  const texto = inputBusqueda.value;
+
+  let tieneCaracter = false;
+  for (let i = 0; i < texto.length; i++) {
+    if (texto[i] !== " ") {
+      tieneCaracter = true;
+    }
+  }
+
+  if (tieneCaracter === true) {
+    buscarProductosPorNombre(texto);
+  } else {
+    renderizarProductos(productosGlobal, categoriaSeleccionada || CATEGORIA_DEFAULT);
+  }
+});
 
 // ================================
 // INICIO DEL SISTEMA
 // ================================
-(async () => {
+
+async function iniciarAplicacion() {
   const categorias = await obtenerJSON(URLCategorias);
   productosGlobal = await obtenerJSON(URLProductos);
+  console.log("productos cargados")
 
   renderizarCategorias(categorias);
   renderizarProductos(productosGlobal, CATEGORIA_DEFAULT);
-})();
-
-function renderizarItemsCarrito(carrito){
-    itemsCarrito = document.querySelector("#cart-count");
-    itemsCarrito.textContent = carrito.length;
+  actualizarContadorCarrito();
 }
+
+// Llamar al inicio
+iniciarAplicacion();

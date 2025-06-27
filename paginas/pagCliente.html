@@ -2,57 +2,59 @@
 <html lang="en">
 
 <head>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>Productos</title>
     <link rel="icon" href="../imagenes/assets/PlantaFavInco.ico" />
-    <link rel="stylesheet" href="../styles/estilosClientes.css" />
+    
+    <link rel="stylesheet" href="../styles/estiloClientes.css" />
+    <link rel="stylesheet" href="../styles/estiloGeneral.css" />
+
 </head>
 
 <body>
 
     <!-- Navbar -->
-    <nav class="navbar">
-  <div class="logo">🌿 Vivero Natural</div>
-  <div class="nombreAlumno"></div>
-  <input type="text" placeholder="Buscar..." class="search-bar" />
-  <div class="cart">
-    <span><strong>🛒 Carrito:</strong> <span id="cart-count">0</span> productos</span>
-  </div>
-</nav>
+    <nav id="navbar">
+
+        <div id="nav-logo-y-nombre"><span class="logo">🌿 Vivero Natural</span></div>
+        <div id="nav-nombres-autores"><span class="nombreAlumno"> </span></div>
+        <div id="nav-barra-busqueda"><input type="text" placeholder="Buscar..." class="search-bar" id="buscador-productos"/> </div>
+        <div id="nav-carrito">
+            <a href="carrito.html" class="cart">
+                <strong>🛒 Carrito:</strong> <span id="cart-count">0</span> productos
+            </a>
+        </div>
+
+    </nav>
+
 
     <!-- Contenedor principal -->
-
 
     <main>
 
         <aside id="selector-categorias">
-            <div id="categorias-grid">
+            <div id="grid-categorias-DOM">
                 <!--ACA VA UN INNERHTML-->
             </div>
         </aside>
 
 
 
-        <section id="products-section">
+        <section id="seccion-productos">
 
-            <h2>Nuestros productos</h2>
-            <div id="product-grid">
+            <h2>Nuestros productos **(este h2 es bastante feucho, hacerlo más lindo)</h2>
+            <div id="grid-productos-DOM">
                 <!--ACA VA UN INNERHTML-->
             </div>
         </section>
 
 
-
-
-
-
-
-
-
-
     </main>
+
+
     <script src="../codigo/renderizarProductosYCategorias.js"></script>
 </body>
-
 </html>

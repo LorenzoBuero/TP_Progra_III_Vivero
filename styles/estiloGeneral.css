@@ -1,0 +1,112 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+:root{
+
+  --verde-claro: #66bb6a;
+  --verde-intermedio : #2e7d32;
+  --verde-oscuro: #1b5e20;
+  
+  --rojo-claro: #d32f2f;
+  --rojo-oscuro: #b71c1c;
+
+  --negro : #000;
+  --gris : #555;
+  --gris-claro: #ddd ;
+  --blanco: #fff;
+}
+
+
+/*----
+NAVBAR
+-----*/
+#navbar {
+  color: var(--blanco);
+  background-color: var(--verde-intermedio);
+
+  padding: 15px 30px;
+  width: 100%;
+
+  position: sticky;
+  top: 0;
+
+  display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+  font-weight: bold;
+}
+
+#navbar .logo {
+  font-size: 1.7rem;
+}
+
+#navbar .nombreAlumno {
+  font-size: 1rem;
+}
+
+#navbar .search-bar {
+  padding: 8px;
+  border-radius: 5px;
+  border: none;
+  width: 220px;
+}
+
+#navbar .cart {
+  background-color: var(--blanco);
+  color: var(--verde-intermedio);
+  padding: 8px 15px;
+  border-radius: 8px;
+}
+
+
+/*------
+BOTONES
+-------*/
+.boton{
+  color: var(--blanco);
+
+  border: none;
+
+  padding: 10px;
+  border-radius: 5px;
+}
+.boton:hover
+{
+  transition: background-color 0.3s;
+  cursor: pointer;
+}
+
+.boton.verde{
+  background-color: var(--verde-claro);  
+}
+
+.boton.verde:hover {
+  background-color: var(--verde-intermedio);
+}
+
+.boton.rojo {
+  background-color: var(--rojo-claro);
+}
+
+.boton.rojo:hover {
+  background-color: var(--rojo-oscuro);
+}
+
+.boton.blanco{
+  background-color: var(--blanco);
+  color: var(--verde-intermedio);
+
+  padding: 8px 12px;
+  
+  border: 2px solid var(--verde-intermedio);
+}
+
+.boton.blanco:hover{
+  background-color: var(--verde-intermedio);
+  color: var(--blanco);
+}

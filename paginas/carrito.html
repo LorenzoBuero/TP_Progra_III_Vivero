@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Carrito de Compras</title>
+  <link rel="stylesheet" href="../styles/carrito.css" />
+  <link rel="stylesheet" href="../styles/estiloGeneral.css" />
+</head>
+<body>
+
+  <!-- Navbar -->
+    <nav id="navbar">
+
+        <div id="nav-logo-y-nombre"><span class="logo">🌿 Vivero Natural</span></div>
+        <div id="nav-nombres-autores"><span class="nombreAlumno"> </span></div>
+        <div id="nav-carrito">
+            <a href="pagCliente.html" class="cart">
+                <strong>Seguir comprando </strong><span id="cart-count">0</span> productos
+            </a><!--HABRIA QUE MEJORAR ESTA PARTE-->
+        </div>
+
+    </nav>
+
+  <main class="cart-section">
+    <h2>🛍️ Tu Carrito</h2>
+
+    <ul id="cart-items">
+      <!-- Aquí se renderizan los productos agregados al carrito -->
+    </ul>
+
+    <div class="cart-total">
+      Total: <strong>$<span id="cart-total">0.00</span></strong>
+    </div>
+
+    <div class="acciones-carrito">
+      <button id="btn-confirmar-compra" class="boton verde">Confirmar Compra</button>
+      <button id="btn-vaciar-carrito" class="boton rojo">Vaciar Carrito</button>
+    </div>
+  </main>
+
+  <script src="../codigo/carrito.js"></script>
+</body>
+</html>
