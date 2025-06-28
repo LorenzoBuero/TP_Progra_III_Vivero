@@ -4,6 +4,28 @@ function guardarCarrito() {
   localStorage.setItem("carrito", JSON.stringify(carrito));
 }
 
+function eliminarYagregarAlCarrito(numero, indice){
+
+        if (carrito[indice].cantidad > 1) {
+          console.log(carrito[indice]);
+          
+          carrito[indice].cantidad = carrito[indice].cantidad + numero;
+        } else {
+          // armamos un nuevo array sin ese elemento
+          let nuevoCarrito = [];
+          for (let j = 0; j < carrito.length; j++) {
+            if (j !== indice) {
+              nuevoCarrito[nuevoCarrito.length] = carrito[j];
+            }
+          }
+          carrito = nuevoCarrito;
+        }
+
+        guardarCarrito();
+        renderizarCarrito();
+      }
+
+
 function renderizarCarrito() {
   const lista = document.getElementById("cart-items");
   const totalSpan = document.getElementById("cart-total");
@@ -34,30 +56,21 @@ function renderizarCarrito() {
     botonEliminar.className = "delete-button boton rojo";
     botonEliminar.textContent = "Eliminar";
 
-    // usamos variable i directamente 
-    botonEliminar.addEventListener("click", (function(indice) {
-      return function() {
-        if (carrito[indice].cantidad > 1) {
-          carrito[indice].cantidad = carrito[indice].cantidad - 1;
-        } else {
-          // armamos un nuevo array sin ese elemento
-          let nuevoCarrito = [];
-          for (let j = 0; j < carrito.length; j++) {
-            if (j !== indice) {
-              nuevoCarrito[nuevoCarrito.length] = carrito[j];
-            }
-          }
-          carrito = nuevoCarrito;
-        }
+    const botonAgregar = document.createElement("button");
+    botonAgregar.className = "agregar-button boton verde";
+    botonAgregar.textContent = "+1"
 
-        guardarCarrito();
-        renderizarCarrito();
-      };
-    })(i));
+
+    // variable i directamente 
+    botonEliminar.addEventListener("click", (eliminarYagregarAlCarrito(-1, i)), i);
+
+    botonAgregar.addEventListener("click", (eliminarYagregarAlCarrito(1, i)), i)
+  ;
 
     li.appendChild(nombre);
     li.appendChild(info);
     li.appendChild(botonEliminar);
+    li.appendChild(botonAgregar);
     lista.appendChild(li);
   }
 
