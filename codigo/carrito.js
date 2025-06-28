@@ -6,8 +6,7 @@ function guardarCarrito() {
 
 function eliminarYagregarAlCarrito(numero, indice){
 
-        if (carrito[indice].cantidad > 1) {
-          console.log(carrito[indice]);
+        if (carrito[indice].cantidad >= 1) {
           
           carrito[indice].cantidad = carrito[indice].cantidad + numero;
         } else {
@@ -26,6 +25,7 @@ function eliminarYagregarAlCarrito(numero, indice){
       }
 
 
+
 function renderizarCarrito() {
   const lista = document.getElementById("cart-items");
   const totalSpan = document.getElementById("cart-total");
@@ -36,6 +36,7 @@ function renderizarCarrito() {
   let cantidadTotal = 0;
 
   for (let i = 0; i < carrito.length; i++) {
+
     const producto = carrito[i];
     const li = document.createElement("li");
     li.className = "item-block";
@@ -62,9 +63,9 @@ function renderizarCarrito() {
 
 
     // variable i directamente 
-    botonEliminar.addEventListener("click", (eliminarYagregarAlCarrito(-1, i)), i);
+    botonEliminar.addEventListener("click", (eliminarYagregarAlCarrito.bind(this, -1, i)), i);
 
-    botonAgregar.addEventListener("click", (eliminarYagregarAlCarrito(1, i)), i)
+    botonAgregar.addEventListener("click", (eliminarYagregarAlCarrito.bind(this, 1, i)), i)
   ;
 
     li.appendChild(nombre);
@@ -74,7 +75,7 @@ function renderizarCarrito() {
     lista.appendChild(li);
   }
 
-  totalSpan.textContent = "$" + total;
+  totalSpan.textContent = + total;
   contador.textContent = cantidadTotal;
 }
 
