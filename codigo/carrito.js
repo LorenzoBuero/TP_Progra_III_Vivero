@@ -6,7 +6,7 @@ function guardarCarrito() {
 
 function eliminarYagregarAlCarrito(numero, indice){
 
-        if (carrito[indice].cantidad >= 1) {
+        if (carrito[indice].cantidad > 1) {
           
           carrito[indice].cantidad = carrito[indice].cantidad + numero;
         } else {
