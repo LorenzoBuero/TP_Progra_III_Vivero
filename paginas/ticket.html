@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ticket de Compra</title>
+  <link rel="stylesheet" href="../styles/ticket.css" />
+</head>
+<body>
+
+  <main id="ticket">
+    <h1>Vivero Naturaleza Viva</h1>
+    <p><strong>Fecha:</strong> <span id="fecha"></span></p>
+    <p><strong>Cliente:</strong> <span id="cliente"></span></p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Producto</th>
+          <th>Cantidad</th>
+          <th>Precio Unitario</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody id="detalle-productos">
+        <!-- Acá van los productos -->
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="3"><strong>Total:</strong></td>
+          <td><strong id="total"></strong></td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <p style="text-align: center; margin-top: 1rem;"><strong>¡Gracias por tu compra! 🌿</strong></p>
+  </main>
+
+  <div class="acciones">
+    <button onclick="descargarPDF()">Descargar Ticket en PDF</button>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script>
+    const ticketData = JSON.parse(localStorage.getItem("ticket"));
+
+    if (!ticketData) {
+      alert("No se encontró ningún ticket.");
+      location.href = "index.html"; // o redireccionar a la tienda
+    }
+
+    document.getElementById("cliente").textContent = ticketData.cliente;
+    document.getElementById("fecha").textContent = ticketData.fecha;
+    document.getElementById("total").textContent = `$${ticketData.total}`;
+
+    const tbody = document.getElementById("detalle-productos");
+    ticketData.productos.forEach(p => {
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>${p.nombre}</td>
+        <td>${p.cantidad}</td>
+        <td>$${p.precio}</td>
+        <td>$${p.precio * p.cantidad}</td>
+      `;
+      tbody.appendChild(tr);
+    });
+
+    function descargarPDF() {
+      const ticket = document.getElementById("ticket");
+      const opciones = {
+        margin: 0.5,
+        filename: 'ticket-vivero.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+      };
+      html2pdf().set(opciones).from(ticket).save();
+    }
+  </script>
+</body>
+</html>

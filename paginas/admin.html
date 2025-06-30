@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Administrador - Vivero</title>
+  <link rel="stylesheet" href="../styles/adminPagina.css" />
+</head>
+<body>
+
+<header>
+  <h1>Panel de Administración - Vivero</h1>
+</header>
+
+<main>
+
+  <!-- Agregar producto -->
+  <section>
+    <h2>Agregar Producto</h2>
+    <form action="/admin/productos/agregar" method="POST">
+      <label for="nombre">Nombre:</label>
+      <input type="text" name="nombre" id="nombre" required>
+
+      <label for="categoria">Categoría:</label>
+      <input type="text" name="categoria" id="categoria" required>
+
+      <label for="precio">Precio ($):</label>
+      <input type="number" name="precio" id="precio" min="0" step="0.01" required>
+
+      <label for="stock">Stock:</label>
+      <input type="number" name="stock" id="stock" min="0" required>
+
+      <button type="submit">Agregar Producto</button>
+    </form>
+  </section>
+
+  <hr>
+
+  <!-- Eliminar producto -->
+  <section>
+    <h2>Eliminar Producto</h2>
+    <form action="/admin/productos/eliminar" method="POST">
+      <label for="idEliminar">ID del producto a eliminar:</label>
+      <input type="text" name="id" id="idEliminar" required>
+
+      <button type="submit">Eliminar Producto</button>
+    </form>
+  </section>
+
+  <hr>
+
+  <!-- Dar de baja producto -->
+  <section>
+    <h2>Dar de Baja Producto</h2>
+    <form action="/admin/productos/baja" method="POST">
+      <label for="idBaja">ID del producto:</label>
+      <input type="text" name="id" id="idBaja" required>
+
+      <button type="submit">Dar de Baja</button>
+    </form>
+  </section>
+
+  <hr>
+
+  <!-- Dar de alta producto -->
+  <section>
+    <h2>Dar de Alta Producto</h2>
+    <form action="/admin/productos/alta" method="POST">
+      <label for="idAlta">ID del producto:</label>
+      <input type="text" name="id" id="idAlta" required>
+
+      <button type="submit">Dar de Alta</button>
+    </form>
+  </section>
+
+</main>
+
+</body>
+</html>
