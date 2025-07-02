@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Administrador - Vivero</title>
+  <link rel="stylesheet" href="../styles/adminPagina.css" />
+</head>
+<body>
+
+<header>
+  <h1>Panel de Administración - Vivero</h1>
+</header>
+
+<main>
+
+  <!-- Agregar producto -->
+  <section>
+    <h2>Editar Producto</h2>
+    <form action="/admin/productos/agregar" method="POST">
+      <label for="nombre">Nombre:</label>
+      <input type="text" name="nombre" id="nombre" required>
+
+      <label for="categoria">Categoría:</label>
+      <input type="text" name="categoria" id="categoria" required>
+
+      <label for="precio">Precio ($):</label>
+      <input type="number" name="precio" id="precio" min="0" step="0.01" required>
+
+      <button type="submit">Guardar Cambios</button>
+    </form>
+  </section>
+
+  <hr>
+
+
+  <hr>
+
+  <!-- Dar de baja producto -->
+  <section>
+    <h2>Dar de Baja Producto</h2>
+    <form action="/admin/productos/baja" method="POST">
+      <button type="submit">Dar de Baja</button>
+    </form>
+  </section>
+
+  <hr>
+
+  <!-- Dar de alta producto -->
+  <section>
+    <h2>Dar de Alta Producto</h2>
+    <form action="/admin/productos/alta" method="POST">
+      <button type="submit">Dar de Alta</button>
+    </form>
+  </section>
+
+</main>
+
+</body>
+</html>

@@ -1,79 +1,55 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Administrador - Vivero</title>
-  <link rel="stylesheet" href="../styles/adminPagina.css" />
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Productos</title>
+    <link rel="icon" href="../imagenes/assets/PlantaFavInco.ico" />
+    
+    <link rel="stylesheet" href="../styles/estiloClientes.css" />
+    <link rel="stylesheet" href="../styles/estiloGeneral.css" />
+
 </head>
+
 <body>
 
-<header>
-  <h1>Panel de Administración - Vivero</h1>
-</header>
+    <!-- Navbar -->
+    <nav id="navbar">
 
-<main>
+        <div id="nav-logo-y-nombre"><span class="logo">🌿 Vivero Natural</span></div>
+        <div id="nav-nombres-autores"><span class="nombreAlumno">Administrador </span></div>
+        <div id="nav-barra-busqueda"><input type="text" placeholder="Buscar..." class="search-bar" id="buscador-productos"/> </div>
 
-  <!-- Agregar producto -->
-  <section>
-    <h2>Agregar Producto</h2>
-    <form action="/admin/productos/agregar" method="POST">
-      <label for="nombre">Nombre:</label>
-      <input type="text" name="nombre" id="nombre" required>
+    </nav>
 
-      <label for="categoria">Categoría:</label>
-      <input type="text" name="categoria" id="categoria" required>
 
-      <label for="precio">Precio ($):</label>
-      <input type="number" name="precio" id="precio" min="0" step="0.01" required>
+    <!-- Contenedor principal -->
 
-      <label for="stock">Stock:</label>
-      <input type="number" name="stock" id="stock" min="0" required>
+    <main>
 
-      <button type="submit">Agregar Producto</button>
-    </form>
-  </section>
+        <aside id="selector-categorias">
+            <div id="grid-categorias-DOM">
+                <!--ACA VA UN INNERHTML-->
+            </div>
+        </aside>
 
-  <hr>
 
-  <!-- Eliminar producto -->
-  <section>
-    <h2>Eliminar Producto</h2>
-    <form action="/admin/productos/eliminar" method="POST">
-      <label for="idEliminar">ID del producto a eliminar:</label>
-      <input type="text" name="id" id="idEliminar" required>
 
-      <button type="submit">Eliminar Producto</button>
-    </form>
-  </section>
+        <section id="seccion-productos">
 
-  <hr>
+            <h2>Nuestros productos **(este h2 es bastante feucho, hacerlo más lindo)</h2>
+            <div id="grid-productos-DOM">
+                <!--ACA VA UN INNERHTML-->
+            </div>
+        </section>
 
-  <!-- Dar de baja producto -->
-  <section>
-    <h2>Dar de Baja Producto</h2>
-    <form action="/admin/productos/baja" method="POST">
-      <label for="idBaja">ID del producto:</label>
-      <input type="text" name="id" id="idBaja" required>
 
-      <button type="submit">Dar de Baja</button>
-    </form>
-  </section>
+    </main>
 
-  <hr>
 
-  <!-- Dar de alta producto -->
-  <section>
-    <h2>Dar de Alta Producto</h2>
-    <form action="/admin/productos/alta" method="POST">
-      <label for="idAlta">ID del producto:</label>
-      <input type="text" name="id" id="idAlta" required>
-
-      <button type="submit">Dar de Alta</button>
-    </form>
-  </section>
-
-</main>
-
+    <script src="../codigo/admin.mjs"></script>
 </body>
 </html>
