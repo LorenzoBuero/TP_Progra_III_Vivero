@@ -1,0 +1,36 @@
+index.js
+es el archivo principal del programa
+
+package.json
+tiene la configuración del proyecto y las dependencias necesarias
+
+.env
+variables de ambiente
+
+.env.example
+es un .env vacío para que los que hagan pull puedan armar rápido las variables de ambiente
+
+
+/src
+contiene las carpetas con la lógica del programa (excepto index.js)
+
+/src/config 
+configura algunas cosas (la base de datos y las variables de entorno)
+
+/src/routes
+escucha en la barra de navegación las querys para realizar las acciones correspondientes
+
+/src/controllers
+tiene los scripts con las funciones principales del programa (acciones CRUD en este caso)
+
+/src/middlewares
+scripts que verifican contenidos recibidos desde el front-end (verificar que se suban solo imágenes por ejemplo)
+
+/src/models
+generan los campos de las bases de datos
+
+/src/services
+tiene algunas funciones que simplemente están para usar menos texto y hacer todo un poco más simple ()
+
+/src/utils
+(otras herramientas, aún no entiendo)
