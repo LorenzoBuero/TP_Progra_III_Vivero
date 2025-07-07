@@ -1,13 +1,13 @@
 import {createRequire} from "module";
 const require = createRequire(import.meta.url); 
-import sequelize from "./src/config/db_mysql.js"
-import envs from "./src/config/envs.js";
+import sequelize from "./config/db_mysql.js"
+import envs from "./config/envs.js";
 import express from "express";
 
 //TEMPORAL, importar esto desde controllers
-import coso from "./src/models/producto.model.js";
-import cosa from "./src/models/categoria.model.js";
-import cosu from "./src/models/admin.model.js";
+import coso from "./models/producto.model.js";
+import cosa from "./models/categoria.model.js";
+import cosu from "./models/admin.model.js";
 
 
 
