@@ -7,6 +7,9 @@ import Categoria from "./models/categoria.model.js";
 import envs from "./config/envs.js";
 import fs from "fs/promises";
 
+
+
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
 
