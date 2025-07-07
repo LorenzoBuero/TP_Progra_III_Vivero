@@ -2,38 +2,38 @@ import sequelize from "../config/db_mysql.js";
 import {DataTypes} from "sequelize";
 
 
-const Producto = sequelize.define("producto", {
+const Producto = sequelize.define("productos", {
 
     id : {
         type : DataTypes.INTEGER,
         autoIncrement : true,
         allowNull : false,
-        primaryKey : true,
+        primaryKey : true
     },
 
     nombre : {
         type : DataTypes.CHAR,
         validate : {max : 100},
-        allowNull : false,
+        allowNull : false
     },
 
     categoriaFK : {
         type : DataTypes.TINYINT,
         validate : {max : 30},
-        allowNull : false,
+        allowNull : false
     },
     stock : {
         type : DataTypes.BOOLEAN,
         defaultValue : true,
-        allowNull : false,
+        allowNull : false
     },
     precio : {
         type : DataTypes.DECIMAL, 
-        allowNull : false,
+        allowNull : false
     },
     imagen : {
         type : DataTypes.BLOB,
-        allowNull : false,
+        allowNull : false
     }
 });
 

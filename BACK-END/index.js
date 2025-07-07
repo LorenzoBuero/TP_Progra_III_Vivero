@@ -3,7 +3,11 @@ const require = createRequire(import.meta.url);
 import sequelize from "./src/config/db_mysql.js"
 import envs from "./src/config/envs.js";
 import express from "express";
-import coso from "./src/models/producto.model.js"
+
+//TEMPORAL, importar esto desde controllers
+import coso from "./src/models/producto.model.js";
+import cosa from "./src/models/categoria.model.js";
+import cosu from "./src/models/admin.model.js";
 
 
 
@@ -17,14 +21,9 @@ const coneccionDB = async () => {
         console.log("    MYSQL en linea");
 
                 //debug temporal
-                /*await sequelize.query("create table papa (id int)");
-                await sequelize.query("show tables").then(function(rows) {
+                /*sequelize.query("show tables").then(function(rows) {
                     console.log(JSON.stringify(rows));
-                });
-                await sequelize.query("drop table papa");
-                await sequelize.query("show tables").then(function(rows) {
-                    console.log(JSON.stringify(rows));
-                });;*/
+                });*/
 
 
 
