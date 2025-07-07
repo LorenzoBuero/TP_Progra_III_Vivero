@@ -1,0 +1,101 @@
+
+/*-----
+Main layout 
+-------*/
+main {
+  padding: 20px;
+
+  display: grid;
+    grid-template-columns: 20% 80%;
+    gap: 20px;
+}
+
+
+/*-----
+Categorias
+------*/
+#grid-categorias-DOM {
+  padding: 10px 0;
+
+  display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.tarjeta-categoria {
+  width: 40%;
+
+  border: 3px solid transparent;
+    border-radius: 10px;
+
+  cursor: pointer;
+}
+
+.tarjeta-categoria:hover {
+  border-color: var(--verde-claro);
+  transform: scale(1.03);
+  transition: all 0.4s;
+}
+
+.tarjeta-categoria img {
+  width: 100%;
+}
+
+.tarjeta-categoria.activa {
+  border-color: var(--verde-oscuro);
+  background-color:var(--verde-claro);
+}
+
+
+/*--------
+Productos
+--------*/
+#grid-productos-DOM {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+}
+
+#grid-productos-DOM .tarjeta-producto {
+  background-color: var(--blanco);
+  width: 200px;
+  padding: 15px;
+  text-align: center;
+
+  border: 1px var(--gris-claro);
+    border-radius: 10px;
+    box-shadow: 0 2px 5px var(--negro);
+}
+
+#grid-productos-DOM .tarjeta-producto:hover {
+  transform: translateY(-5px);/*esto hace que pase por encima de la barra*/
+  transition: transform 0.3s ease;
+}
+
+#grid-productos-DOM .tarjeta-producto img {
+  width: 100%;
+  height: 150px;
+  border-radius: 10px;
+}
+
+#grid-productos-DOM .tarjeta-producto p {
+  margin: 10px 0;
+  color: var(--verde-intermedio);
+}
+
+#grid-productos-DOM .boton-agregar {
+  padding: 8px 12px;
+  border-radius: 5px;
+
+  font-weight: bold;
+  
+
+
+  border: none;
+}
+
+#grid-productos-DOM .boton-agregar:hover {
+  background-color: var(--verde-intermedio);
+}

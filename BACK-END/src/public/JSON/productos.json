@@ -3,7 +3,7 @@
         "id":1,
         "nombre":"venus atrapamoscas",
         "categoria":4,
-        "stock":false,
+        "stock":true,
         "precio":10000.00,
         "imagen":"../imagenes/datos/productos/venus_atrapamoscas.jpg"
         

@@ -1,4 +1,4 @@
-NO SE SI ESTO ES NECESARIO O NO
+//NO SE SI ESTO ES NECESARIO O NO
 
 /*import sequelize from "..config/db_mysql.js";
 import { Profiler } from "react";

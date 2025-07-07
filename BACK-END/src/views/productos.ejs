@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Productos</title>
+  <link rel="stylesheet" href="/css/estiloClientes.css" />
+  <link rel="stylesheet" href="/css/estiloGeneral.css" />
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav id="navbar">
+    <div id="nav-logo-y-nombre"><span class="logo">🌿 Vivero Natural</span></div>
+    <div id="nav-barra-busqueda">
+      <input type="text" placeholder="Buscar..." class="search-bar" id="buscador-productos" />
+    </div>
+    <div id="nav-carrito">
+      <a href="/carrito.html" class="cart">
+        <strong>🛒 Carrito:</strong> <span id="cart-count">0</span> productos
+      </a>
+    </div>
+  </nav>
+
+  <!-- Contenido principal -->
+  <main>
+    <aside id="selector-categorias">
+      <div id="grid-categorias-DOM">
+        <% categorias.forEach(categoria => { %>
+          <div class="tarjeta-categoria" data-id="<%= categoria.id %>">
+            <img src="<%= categoria.imagen %>" alt="<%= categoria.nombre %>" />
+            <p><%= categoria.nombre %></p>
+          </div>
+        <% }) %>
+      </div>
+    </aside>
+
+    <section id="seccion-productos">
+      <h2>🌱 Nuestros productos</h2>
+      <div id="grid-productos-DOM">
+        <% productos.forEach(producto => { %>
+          <div class="tarjeta-producto" data-id="<%= producto.id %>" data-categoria="<%= producto.categoria %>">
+            <img src="<%= producto.imagen %>" alt="<%= producto.nombre %>" />
+            <p><%= producto.nombre %></p>
+            <p><strong>$<%= producto.precio %></strong></p>
+            <button class="boton-agregar boton verde">Agregar al carrito</button>
+          </div>
+        <% }) %>
+      </div>
+    </section>
+  </main>
+
+  <!-- JavaScript -->
+  <script src="../js/renderizarProductosYCategorias.js"></script>
+</body>
+</html>
