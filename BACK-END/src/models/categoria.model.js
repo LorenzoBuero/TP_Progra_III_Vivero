@@ -14,6 +14,10 @@ const Categoria = sequelize.define("categorias", {
         unique : true,
         allowNull : true
     },
+    imagen : {
+        type : DataTypes.BLOB,
+        allowNull : false
+    },
     activo : {
         type : DataTypes.BOOLEAN,
         allowNull : false
