@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - Vivero</title>
+  <link rel="stylesheet" href="./styles/estiloLogin.css" />
+  <link rel="stylesheet" href="./styles/estiloGeneral.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="login-box">
+      <h2>Bienvenido al Vivero</h2>
+      <form id="login-form">
+        <div class="input-group">
+          <label for="usuario">Nombre</label>
+          <input type="text" id="usuario" name="usuario" required />
+        </div>
+        <button type="submit" class="boton-ingresar boton verde">Ingresar</button>
+      </form>
+      <div class="admin-link boton blanco">
+        <a href="/admin">Administrador</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function esNombreValido(nombre) {
+      if (nombre === "") return false;
+
+      const letrasValidas = "abcdefghijklmnñopqrstuvwxyzáéíóúABCDEFGHIJKLMNÑOPQRSTUVWXYZÁÉÍÓÚ ";
+      const caracteres = nombre.split("");
+
+      for (let i = 0; caracteres[i]; i++) {
+        if (!letrasValidas.includes(caracteres[i])) {
+          return false;
+        }
+      }
+
+      return true;
+    }
+
+    document.getElementById("login-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const nombre = document.getElementById("usuario").value.trim();
+
+      if (!esNombreValido(nombre)) {
+        alert("Por favor, ingresá un nombre válido (solo letras y espacios).");
+        return;
+      }
+
+      localStorage.setItem("nombreUsuario", nombre);
+      window.location.href = "/productos"; // redirige a la ruta del backend que renderiza productos.ejs
+    });
+  </script>
+</body>
+</html>

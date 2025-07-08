@@ -4,6 +4,7 @@ const tarjetasCategorias = document.querySelectorAll(".tarjeta-categoria");
 const contenedorProductos = document.getElementById("grid-productos-DOM");
 
 let categoriaSeleccionada = null;
+
 // 🛒 Actualiza contador del carrito
 function actualizarContadorCarrito() {
   const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
@@ -11,10 +12,18 @@ function actualizarContadorCarrito() {
   contadorCarrito.textContent = cantidad;
 }
 
-//  Agrega producto al carrito
+// Agrega producto al carrito
 function agregarAlCarrito(productoId, nombre, precio, imagen) {
   let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-  let existente = carrito.find(p => p.id == productoId);
+  let existente = null;
+  console.log(carrito);
+  
+
+  for (let i = 0; i < carrito.length; i++) {
+    if (carrito[i].id == productoId) {
+      existente = carrito[i];
+    }
+  }
 
   if (existente) {
     existente.cantidad += 1;
@@ -26,54 +35,66 @@ function agregarAlCarrito(productoId, nombre, precio, imagen) {
   actualizarContadorCarrito();
 }
 
-//  Asignar eventos a botones "Agregar"
+// Asignar eventos a botones "Agregar" sin acumular
 function asignarEventosBotonesAgregar() {
   const botones = document.querySelectorAll(".boton-agregar");
-  botones.forEach(boton => {
-    boton.addEventListener("click", () => {
-      const tarjeta = boton.closest(".tarjeta-producto");
+
+  for (let i = 0; i < botones.length; i++) {
+    botones[i].onclick = function () {
+      const tarjeta = this.closest(".tarjeta-producto");
       const productoId = tarjeta.getAttribute("data-id");
-      const nombre = tarjeta.querySelector("p:nth-of-type(1)").textContent;
-      const precioTexto = tarjeta.querySelector("p:nth-of-type(2)").textContent;
-      const precio = Number(precioTexto.replace(/[^0-9.-]+/g, ""));
       const imagen = tarjeta.querySelector("img").src;
 
+      const parrafos = tarjeta.querySelectorAll("p");
+      const nombre = parrafos[0].textContent;
+      const precioTexto = parrafos[1].textContent;
+      const partes = precioTexto.split("$");
+
+      let precio = 0;
+      if (partes.length === 2) {
+        precio = Number(partes[1]);
+      }
+
       agregarAlCarrito(productoId, nombre, precio, imagen);
-    });
-  });
+    };
+  }
 }
 
-//  Filtro por texto + categoría
+// Filtro por texto + categoría
 function filtrarProductos() {
   const texto = inputBusqueda.value.toLowerCase().trim();
   const tarjetas = document.querySelectorAll(".tarjeta-producto");
 
-  tarjetas.forEach(tarjeta => {
-    const nombre = tarjeta.querySelector("p:nth-of-type(1)").textContent.toLowerCase();
+  for (let i = 0; i < tarjetas.length; i++) {
+    const tarjeta = tarjetas[i];
+    const nombre = tarjeta.querySelector("p").textContent.toLowerCase();
     const categoria = tarjeta.getAttribute("data-categoria");
 
-    const coincideTexto = nombre.includes(texto);
+    const coincideTexto = nombre.indexOf(texto) !== -1;
     const coincideCategoria = categoriaSeleccionada === null || categoria == categoriaSeleccionada;
 
     tarjeta.style.display = (coincideTexto && coincideCategoria) ? "" : "none";
-  });
+  }
 
-  asignarEventosBotonesAgregar(); // Siempre reasignar después de filtrar
+  asignarEventosBotonesAgregar();
 }
 
-//  Evento click de categoría
-tarjetasCategorias.forEach(tarjeta => {
-  tarjeta.addEventListener("click", () => {
-    tarjetasCategorias.forEach(cat => cat.classList.remove("activa"));
-    tarjeta.classList.add("activa");
-    categoriaSeleccionada = tarjeta.getAttribute("data-id");
+// Evento click de categoría
+for (let i = 0; i < tarjetasCategorias.length; i++) {
+  tarjetasCategorias[i].addEventListener("click", function () {
+    for (let j = 0; j < tarjetasCategorias.length; j++) {
+      tarjetasCategorias[j].classList.remove("activa");
+    }
+
+    this.classList.add("activa");
+    categoriaSeleccionada = this.getAttribute("data-id");
     filtrarProductos();
   });
-});
+}
 
-//  Evento input búsqueda
+// Evento input búsqueda
 inputBusqueda.addEventListener("input", filtrarProductos);
 
-//  Inicialización
+// Inicialización
 actualizarContadorCarrito();
 filtrarProductos();
