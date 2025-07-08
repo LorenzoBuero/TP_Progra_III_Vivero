@@ -5,12 +5,12 @@ import sequelize from "./config/db_mysql.js";
 import envs from "./config/envs.js";
 import productosRouter from "./routes/producto.routes.js";
 import viewsRouter from "./routes/views.routes.js";
-
-
-
+import { subirDatos } from "./config/db_setup.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
+
+
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -32,9 +32,15 @@ async function iniciar() {
     app.listen(envs.port || 3000, () =>
       console.log(`🚀 Servidor en http://localhost:${envs.port || 3000}`)
     );
+    subirDatos();
   } catch (error) {
     console.error("Error DB:", error);
   }
+  
 }
 
 iniciar();
+
+/*sequelize.query("describe productos").then(function(rows) {
+    console.log(JSON.stringify(rows));});
+*/

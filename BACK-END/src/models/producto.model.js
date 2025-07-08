@@ -32,7 +32,7 @@ const Producto = sequelize.define("productos", {
         allowNull : false
     },
     imagen : {
-        type : DataTypes.BLOB,
+        type : DataTypes.STRING,
         allowNull : false
     }
 });

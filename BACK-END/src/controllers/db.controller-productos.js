@@ -1,11 +1,11 @@
 import sequelize from "./config/db_mysql.js";
 import Producto from "./models/producto.model.js";
-import {crear, obtenerPorCategoria, editarPorID, obtenerPorID, desactivarPorID, activarPorID} from "../services/producto.service.js"
+import {crearProducto, obtenerPorCategoria, editarPorID, obtenerPorID, desactivarPorID, activarPorID} from "../services/producto.service.js"
 
 
 const router = Router();
 
-router.post("/", middlewareeee, crear)//??
+router.post("/", middlewareeee, crearProducto)//??
 
 router.get("/porID/:idProducto", obtenerPorCategoria);
 router.get("/:id", obtenerPorID);

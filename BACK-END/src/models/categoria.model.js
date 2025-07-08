@@ -15,13 +15,13 @@ const Categoria = sequelize.define("categorias", {
         allowNull : true
     },
     imagen : {
-        type : DataTypes.BLOB,
+        type : DataTypes.STRING,
         allowNull : false
-    },
+    }/*,
     activo : {
         type : DataTypes.BOOLEAN,
         allowNull : false
-    }
+    }*/
 });
 
 

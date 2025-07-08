@@ -1,8 +1,8 @@
 //import sequelize from "./config/db_mysql.js";
-import Producto from "./models/producto.model.js";
+import Producto from "../models/producto.model.js";
 
 
-export const crear = async (producto) => {
+export const crearProducto = async (producto) => {
 
     return await Producto.create(producto);
 };
