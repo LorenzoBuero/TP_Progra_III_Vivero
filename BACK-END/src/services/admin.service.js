@@ -1,5 +1,5 @@
 //import Categoria from "./models/categoria.model.js";
-import Admin from "../models/categoria.model.js"
+import Admin from "../models/admin.model.js"
 
 export const crearAdmin = async (admin) => {
 

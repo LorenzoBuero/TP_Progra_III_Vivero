@@ -2,6 +2,7 @@ import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
 import fs from "fs/promises";
+import { requiereAutenticacion } from "../middlewares/autenticacion.middleware.js";
 
 const router = express.Router();
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -17,13 +18,13 @@ router.get("/admin", (req, res) => {
 });
 
 // Ruta: /carrito → Página carrito (HTML estático)
-router.get("/carrito", (req, res) => {
+router.get("/carrito", requiereAutenticacion, (req, res) => {
   res.sendFile(path.join(__dirname, "..", "public", "paginas", "carrito.html"));
 });
 
 
 // Ruta: /ticket → Página de ticket (HTML estático)
-router.get("/ticket", (req, res) => {
+router.get("/ticket", requiereAutenticacion, (req, res) => {
   res.sendFile(path.join(__dirname, "..", "public", "paginas", "ticket.html"));
 });
 

@@ -169,11 +169,11 @@ const admins = [
 const subirProductosADB = async (prods) => {
 
     
-    prods.array.forEach(prod => {
+    prods.forEach(prod => {
         crearProducto({
             nombre : prod.nombre,
-            categoria : prod.categoria,
-            stock : prod.categoria,
+            categoriaFK : prod.categoria,
+            stock : prod.stock,
             precio : prod.precio,
             imagen : prod.imagen
         })
@@ -182,7 +182,7 @@ const subirProductosADB = async (prods) => {
 
 const subirCategoriasADB = async (cats) => {
 
-    cats.array.forEach(cat => {
+    cats.forEach(cat => {
         crearCategoria({
             nombre : cat.nombre,
             imagen : cat.imagen
@@ -192,7 +192,7 @@ const subirCategoriasADB = async (cats) => {
 
 const subirAdminsADB = async (adms) => {
 
-    adms.array.forEach(adm => {
+    adms.forEach(adm => {
         crearAdmin({
             mail : adm.mail,
             contrasenia : adm.contrasenia

@@ -2,6 +2,9 @@ import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
 import fs from "fs/promises";
+import { requiereAutenticacion } from "../middlewares/autenticacion.middleware.js";
+import { inyeccionInputs } from "../middlewares/inyeccion.middleware.js";
+import { upload } from "../middlewares/upload.middleware.js";
 
 const router = express.Router();
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -19,7 +22,7 @@ router.get("/", async (req, res) => {
 });
 
 // GET /api/productos/:id → producto por ID
-router.get("/:id", async (req, res) => {
+router.get("/:id",inyeccionInputs, async (req, res) => {
   try {
     const data = await fs.readFile(productosPath, "utf-8");
     const productos = JSON.parse(data);
@@ -32,7 +35,7 @@ router.get("/:id", async (req, res) => {
 });
 
 // POST /api/productos → agregar nuevo producto
-router.post("/", express.json(), async (req, res) => {
+router.post("/", requiereAutenticacion,inyeccionInputs, async (req, res) => {
   try {
     const data = await fs.readFile(productosPath, "utf-8");
     const productos = JSON.parse(data);
@@ -49,7 +52,7 @@ router.post("/", express.json(), async (req, res) => {
 });
 
 // PUT /api/productos/:id → actualizar producto
-router.put("/:id", express.json(), async (req, res) => {
+router.put("/:id", requiereAutenticacion, inyeccionInputs, async (req, res) => {
   try {
     const data = await fs.readFile(productosPath, "utf-8");
     const productos = JSON.parse(data);
