@@ -1,0 +1,38 @@
+ejs del admin  --> 40 minutos
+
+rutas de POST y PUT (para el administrador) --> 2 horas
+
+usar Db en vez de archivos json --> en proceso
+
+temas de la app (oscuro y claro) --> 1 hora
+
+responsive --> 30 minutos 
+
+controllers --> 1:30 hora
+
+middlewares (autentificacion, inyeccion sql, imagenes) 20 a 30 minutos
+
+paginacion --> no tenemos ni idea
+
+deploy
+
+poner nuestros nombres y apellidos en la pagina --> 10 minutos
+
+La creación de un usuario administrador se realiza a través de un endpoint de la API.  --> a que se refiere esto
+
+tabla de ventas (muchos a muchos con la tabla productos) --> 1 hora 
+
+tabla intermedia productos - categorias --> 10 minutos
+
+El guardado de las contraseñas de los usuarios debe estar encriptado. NO se guardan contraseñas como 
+vienen, se cifran antes de guardarlas. 
+----------------------------------------------------------------------------------------
+TOTAL = 7 HORAS --> buena practica (14 horas)
+----------------------------------------------------------------------------------------
+
+Opcionales:
+
+Agregar categorias 
+
+un tema de pagina más 
+
