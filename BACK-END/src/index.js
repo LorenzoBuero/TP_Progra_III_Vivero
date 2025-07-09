@@ -56,9 +56,9 @@ async function iniciar() {
 }
 
 
-/*sequelize.query("DROP TABLE categorias").then(function(rows) {
-    console.log(JSON.stringify(rows));});
-*/
+/*sequelize.query("DROP TABLE productos").then(function(rows) {
+    console.log(JSON.stringify(rows));});*/
+
 
 iniciar();
 
