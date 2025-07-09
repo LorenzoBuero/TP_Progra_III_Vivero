@@ -8,7 +8,7 @@ import "./models/asociaciones.model.js";
 import productosRouter from "./routes/producto.routes.js";
 import viewsRouter from "./routes/views.routes.js";
 import adminRouter from "./routes/admin.routes.js"
-import { subirDatos } from "./config/db_setup.js";
+import { subirDatos, resubirDatos } from "./config/db_setup.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
@@ -48,7 +48,8 @@ async function iniciar() {
     app.listen(envs.port || 3000, () =>
       console.log(`🚀 Servidor en http://localhost:${envs.port || 3000}`)
     );
-    subirDatos();
+    resubirDatos();
+    //subirDatos();
   } catch (error) {
     console.error("Error DB:", error);
   }

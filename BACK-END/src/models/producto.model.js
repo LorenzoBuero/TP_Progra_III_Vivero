@@ -19,7 +19,6 @@ const Producto = sequelize.define("productos", {
 
     categoriaFK : {
         type : DataTypes.TINYINT,
-        validate : {max : 30},
         allowNull : false
     },
     stock : {

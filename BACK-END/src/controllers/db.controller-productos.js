@@ -1,6 +1,6 @@
 //import sequelize from "./config/db_mysql.js";
 //import Producto from "./models/producto.model.js";
-import {crearProducto, obtenerTodosLosProductos, editarPorID, obtenerPorID, desactivarPorID, activarPorID} from "../services/producto.service.js"
+import {crearProducto, obtenerTodosLosProductos, obtenerPorID, editarPorID, desactivarPorID, activarPorID} from "../services/producto.service.js"
 
 
 export const crear = (req, res) => {
@@ -29,7 +29,7 @@ export const obtenerTodos = async (req, res) => {
     }
 }
 
-export const obtenerPorID = async (req, res) => {
+export const obtenerUnoPorID = async (req, res) => {
     try {
         const producto = await obtenerPorID(req.id);
         console.log(producto);

@@ -1,7 +1,7 @@
 // admin.routes.js
 import express from "express";
 import multer from "multer";
-import path from "path";
+//import path from "path";
 import Producto from "../models/producto.model.js";
 import Categoria from "../models/categoria.model.js"; // asumí que lo tenés
 import { requiereAutenticacion } from "../middlewares/autenticacion.middleware.js";

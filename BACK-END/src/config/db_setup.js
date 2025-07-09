@@ -216,3 +216,16 @@ export const subirDatos = async () => {
         subirAdminsADB(admins);
     }
 }
+
+export const resubirDatos = async () => {
+    
+    await Producto.drop();
+    await Categoria.drop();
+    await Admin.drop();
+
+    
+    subirCategoriasADB(categorias);
+    subirProductosADB(productosDefault);
+    subirAdminsADB(admins);
+    
+}
