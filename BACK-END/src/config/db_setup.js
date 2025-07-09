@@ -10,7 +10,6 @@ import { crearAdmin } from "../services/admin.service.js";
 
 const productosDefault = [
     {
-        id:1,
         nombre:"venus atrapamoscas",
         categoria:4,
         stock:true,
@@ -19,7 +18,6 @@ const productosDefault = [
         
     },
     {
-        id:2,
         nombre:"yerba mate",
         categoria:5,
         stock:true,
@@ -28,7 +26,6 @@ const productosDefault = [
         
     },
     {
-        id:3,
         nombre:"ramo de margaritas",
         categoria:1,
         stock:true,
@@ -37,7 +34,6 @@ const productosDefault = [
         
     },
     {
-        id:4,
         nombre:"clavel del aire",
         categoria:1,
         stock:true,
@@ -46,7 +42,6 @@ const productosDefault = [
         
     },
     {
-        id:5,
         nombre:"maceta plastico cuadrada 20cm x 30cm",
         categoria:0,
         stock:true,
@@ -55,7 +50,6 @@ const productosDefault = [
         
     },
     {
-        id:6,
         nombre:"sanguche de miga",
         categoria:-2,
         stock:true,
@@ -64,7 +58,6 @@ const productosDefault = [
         
     },
     {
-        id:7,
         nombre:"álamo",
         categoria:2,
         stock:true,
@@ -73,7 +66,6 @@ const productosDefault = [
         
     },
     {
-        id:8,
         nombre:"zapallo",
         categoria:3,
         stock:true,
@@ -82,7 +74,6 @@ const productosDefault = [
         
     },
     {
-        id:9,
         nombre:"lirio",
         categoria:1,
         stock:true,
@@ -91,7 +82,6 @@ const productosDefault = [
         
     },
     {
-        id:10,
         nombre:"hongo hermoso",
         categoria:4,
         stock:false,
@@ -100,7 +90,6 @@ const productosDefault = [
         
     },
     {
-        id:11,
         nombre:"semillas álamo",
         categoria:2,
         stock:true,
@@ -109,56 +98,69 @@ const productosDefault = [
         
     },
     {
-        id:12,
         nombre:"BURRITO",
         categoria:5,
         stock:true,
         precio:4000.20,
         imagen:"../imagenes/datos/productos/burrito.jpg"
 
-    }]
+    },
+    {
+        nombre:"jacarandá",
+        categoria:2,
+        stock:true,
+        precio:15000.00,
+        imagen:"../public/imagenes/datos/productos/jacaranda.jpg"
+    },
+    {
+        nombre:"pala de mano abuelita-Jardinera",
+        categoria:0,
+        stock: true,
+        precio: 5000.00,
+        imagen: "../public/imagenes/datos/productos/pala_de_mano_Abuela.jpg"
+    },
+    {
+        nombre: "aloe vera",
+        categoria: 6,
+        stock: false,
+        precio: 2000.00,
+        imagen: "../public/imagenes/datos/productos/aloe_vera.jpg"
+    }
+]
 //---------------------------------------------------------------------------
 //---------------------------------------------------------------------------
 const categorias = [
     {
-        id:0,
         nombre:"otros--no-plantas",
         imagen:"../imagenes/datos/categorias/no-plantas.png"
     },
     {
-        id:1,
         nombre:"flores",
         imagen:"../imagenes/datos/categorias/flores.png"
     },
     {
-        id:2,
         nombre:"arboles",
         imagen:"../imagenes/datos/categorias/arboles.png"
     },
     {
-        id:3,
         nombre:"cultivos",
         imagen:"../imagenes/datos/categorias/cultivos.png"
     },
     {
-        id:4,
         nombre:"exoticos",
         imagen:"../imagenes/datos/categorias/Planta-atrapamoscas.png"
     },
     {
-        id:5,
         nombre:"para-el-mate",
         imagen:"../imagenes/datos/categorias/para-el-mate.png"
     },
     {
-        id:6,
         nombre:"cactus-y-suculentas",
         imagen:"../imagenes/datos/categorias/cactus-y-suculentas.png"
     }]
 
 const admins = [
     {
-        id : 1,
         mail : "lore@perrito.com",
         contrasenia : "mantaraya"
     }

@@ -7,8 +7,8 @@ export const crearProducto = async (producto) => {
     return await Producto.create(producto);
 };
 
-export const obtenerPorCategoria = async (idCategoria) => {
-    return await Producto.findAll({where : {idCategoria : idCategoria}})
+export const obtenerTodosLosProductos = async () => {
+    return await Producto.findAll();
 };
 
 export const obtenerPorID = async (id) => {

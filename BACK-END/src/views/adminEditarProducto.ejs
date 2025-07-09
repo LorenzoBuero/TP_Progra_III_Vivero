@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Editar Producto - Admin</title>
+  <link rel="stylesheet" href="/styles/adminPagina.css" />
+</head>
+<body>
+  <header>
+    <h1>Editar Producto</h1>
+  </header>
+
+  <main>
+    <!-- Cambié el action para que haga POST sin _method -->
+    <form action="/admin/productos/<%= producto.id %>/editar" method="POST" enctype="multipart/form-data">
+      <label for="nombre">Nombre:</label>
+      <input type="text" name="nombre" id="nombre" value="<%= producto.nombre %>" required>
+
+      <label for="categoriaFK">Categoría:</label>
+      <select name="categoriaFK" id="categoriaFK" required>
+        <% categorias.forEach(cat => { %>
+          <option value="<%= cat.id %>" <%= cat.id === producto.categoriaFK ? "selected" : "" %>>
+            <%= cat.nombre %>
+          </option>
+        <% }) %>
+      </select>
+
+      <label for="precio">Precio ($):</label>
+      <input type="number" name="precio" id="precio" min="0" step="0.01" value="<%= producto.precio %>" required>
+
+      <label for="imagen">Nueva imagen (opcional):</label>
+      <input type="file" name="imagen" id="imagen" accept="image/*">
+
+      <p>Imagen actual:</p>
+      <img src="<%= producto.imagen %>" alt="<%= producto.nombre %>" style="max-width: 200px;">
+
+      <button type="submit">Guardar Cambios</button>
+    </form>
+
+    <a href="/admin/dashboard">← Volver al Dashboard</a>
+  </main>
+</body>
+</html>
