@@ -10,7 +10,7 @@ responsive --> 30 minutos
 
 controllers --> 1:30 hora
 
-middlewares (autentificacion, inyeccion sql, imagenes) 20 a 30 minutos
+//middlewares (autentificacion, inyeccion sql, imagenes) 20 a 30 minutos
 
 paginacion --> no tenemos ni idea
 
@@ -26,6 +26,10 @@ tabla intermedia productos - categorias --> 10 minutos
 
 El guardado de las contraseñas de los usuarios debe estar encriptado. NO se guardan contraseñas como 
 vienen, se cifran antes de guardarlas. 
+
+limpiar el localstorage del carrito cuando ingresa un usuario
+
+
 ----------------------------------------------------------------------------------------
 TOTAL = 7 HORAS --> buena practica (14 horas)
 ----------------------------------------------------------------------------------------

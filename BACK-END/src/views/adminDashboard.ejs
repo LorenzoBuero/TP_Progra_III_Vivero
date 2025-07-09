@@ -1,0 +1,47 @@
+<!-- views/adminDashboard.ejs -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Administrador</title>
+  <link rel="stylesheet" href="/styles/adminPagina.css">
+</head>
+<body>
+  <header>
+    <h1>Panel de Administración - Vivero</h1>
+    <a href="/admin/productos/nuevo" class="boton verde">Agregar Producto</a>
+  </header>
+
+  <main>
+    <section>
+      <h2>Listado de Productos</h2>
+      <div class="productos">
+        <% productos.forEach(producto => { %>
+          <div class="tarjeta-producto">
+            <img src="<%= producto.imagen %>" alt="<%= producto.nombre %>">
+            <p><strong><%= producto.nombre %></strong></p>
+            <p>Categoría: <%= producto.categoria ? producto.categoria.nombre : "Sin categoría" %></p>
+            <p>Precio: $<%= producto.precio %></p>
+            <p>Estado: <%= producto.stock ? "Activo" : "Inactivo" %></p>
+            <div class="acciones">
+              <% if (producto.stock) { %>
+                <form action="/admin/productos/<%= producto.id %>/baja" method="POST" style="display:inline;">
+                  <button type="submit">Eliminar</button>
+                </form>
+              <% } else { %>
+                <form action="/admin/productos/<%= producto.id %>/alta" method="POST" style="display:inline;">
+                  <button type="submit">Activar</button>
+                </form>
+              <% } %>
+              <a href="/admin/productos/<%= producto.id %>/editar" class="boton azul">Editar</a>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal de confirmación JS opcional -->
+</body>
+</html>

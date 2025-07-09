@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,6 +8,7 @@
   <link rel="stylesheet" href="./styles/estiloLogin.css" />
   <link rel="stylesheet" href="./styles/estiloGeneral.css" />
 </head>
+
 <body>
   <div class="container">
     <div class="login-box">
@@ -50,9 +52,27 @@
         return;
       }
 
-      localStorage.setItem("nombreUsuario", nombre);
-      window.location.href = "/productos"; // redirige a la ruta del backend que renderiza productos.ejs
+      fetch("/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        credentials: "include", // NECESARIO para que se guarde la sesión
+        body: JSON.stringify({ usuario: nombre })
+      })
+        .then(response => {
+          if (!response.ok) throw new Error("Error al iniciar sesión");
+
+          localStorage.setItem("nombreUsuario", nombre);
+          window.location.href = "/productos";
+        })
+        .catch(error => {
+          alert("Hubo un problema al iniciar sesión.");
+          console.error(error);
+        });
+
     });
   </script>
 </body>
+
 </html>

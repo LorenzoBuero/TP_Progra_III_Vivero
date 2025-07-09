@@ -29,7 +29,7 @@ router.get("/ticket", requiereAutenticacion, (req, res) => {
 });
 
 // Ruta: /productos → Página que renderiza productos (EJS)
-router.get("/productos", async (req, res) => {
+router.get("/productos", requiereAutenticacion, async (req, res) => {
   try {
     const categoriasPath = path.join(__dirname, "..", "public", "JSON", "categorias.json");
     const productosPath = path.join(__dirname, "..", "public", "JSON", "productos.json");
@@ -46,5 +46,23 @@ router.get("/productos", async (req, res) => {
     res.status(500).send("Error al cargar productos o categorías");
   }
 });
+
+
+
+// Login cliente (POST)
+router.post("/login", (req, res) => {
+  const { usuario } = req.body;
+
+  // Validación básica (en el futuro podés consultar una tabla de usuarios)
+  if (usuario && usuario.trim() !== "") {
+    req.session.usuarioAutenticado = true;
+    req.session.nombreUsuario = usuario.trim();
+
+    return res.status(200).json({ mensaje: "Autenticado" });
+  }
+
+  res.status(400).json({ error: "Nombre inválido" });
+});
+
 
 export default router;

@@ -10,7 +10,7 @@ const Categoria = sequelize.define("categorias", {
         primaryKey : true
     },
     nombre : {
-        type : DataTypes.INTEGER,
+        type : DataTypes.STRING,
         unique : true,
         allowNull : true
     },

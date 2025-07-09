@@ -1,10 +1,13 @@
 import express from "express";
+import session from "express-session";
 import path from "path";
 import { fileURLToPath } from "url";
 import sequelize from "./config/db_mysql.js";
 import envs from "./config/envs.js";
+import "./models/asociaciones.model.js";
 import productosRouter from "./routes/producto.routes.js";
 import viewsRouter from "./routes/views.routes.js";
+import adminRouter from "./routes/admin.routes.js"
 import { subirDatos } from "./config/db_setup.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -16,6 +19,16 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "public")));
 
+app.use(express.urlencoded({ extended: true }));
+
+//session
+app.use(session({
+  secret: "clave-secreta",
+  resave: false,
+  saveUninitialized: false,
+  cookie: { maxAge: 1000 * 60 * 60 } // 1 hora
+}));
+
 // Middleware para parsear JSON (importante para POST y PUT con body JSON)
 app.use(express.json());
 
@@ -24,6 +37,9 @@ app.use("/api/productos", productosRouter);
 
 // Rutas vistas (HTML + EJS)
 app.use("/", viewsRouter);
+
+// Rutas admin
+app.use("/", adminRouter)
 
 async function iniciar() {
   try {
