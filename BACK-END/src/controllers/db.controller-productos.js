@@ -1,5 +1,5 @@
-import sequelize from "./config/db_mysql.js";
-import Producto from "./models/producto.model.js";
+//import sequelize from "./config/db_mysql.js";
+//import Producto from "./models/producto.model.js";
 import {crearProducto, obtenerTodosLosProductos, editarPorID, obtenerPorID, desactivarPorID, activarPorID} from "../services/producto.service.js"
 
 
@@ -49,27 +49,21 @@ export const editar = async (req, res) => {
     }
 }
 
-const desactivar = async () => {
-
-    
+const desactivar = async (id) => {
     await desactivarPorID(false);
     console.log("desactivado");
-
-
 }
 
-const activar = async () => {
-    
-    await desactivarPorID(true);
+const activar = async (id) => {
+    await activarPorID(true);
     console.log("activado");
-
-    
 }
 
 export const activarYDesactivar = async (req, res) => {
 
+    const producto = await obtenerPorID(req.id);
     try {
-        if (req.stock == true){
+        if (producto.stock == true){
             await activar();
         }
         else{

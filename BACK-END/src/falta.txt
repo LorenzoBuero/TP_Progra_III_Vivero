@@ -4,7 +4,7 @@ rutas de POST y PUT (para el administrador) --> 2 horas
 
 usar Db en vez de archivos json --> en proceso
 
-temas de la app (oscuro y claro) --> 1 hora
+temas de la app (oscuro y claro) --> 1 hora >>>>filter??
 
 responsive --> 30 minutos 
 
