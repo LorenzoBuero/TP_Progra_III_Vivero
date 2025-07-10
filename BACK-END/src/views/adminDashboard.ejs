@@ -25,7 +25,7 @@
             <p>Precio: $<%= producto.precio %></p>
             <p>Estado: <%= producto.stock ? "Activo" : "Inactivo" %></p>
             <div class="acciones">
-            <form action="/productos/alternarStock/<%= producto.id %>/dashboard" method="POST" style="display:inline;"> 
+            <form action="/productos/alternarStock/<%= producto.id %>" method="POST" style="display:inline;"> 
               <% if (producto.stock) { %>
                   <button type="submit">Desactivar</button>
               <% } else { %>

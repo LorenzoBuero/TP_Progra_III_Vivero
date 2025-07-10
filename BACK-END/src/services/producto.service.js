@@ -33,14 +33,14 @@ export const editarProductoPorID = async (id, producto) => {
 export const desactivarProductoPorID = async (id) =>{
 
     prod = obtenerProductoPorID(id)
-    prod.stock = false;
+    prod.stock = true;
     return await editarProductoPorID(id, prod);
 };
 
-export const activarPorID = async (id) =>{
+export const activarProductoPorID = async (id) =>{
 
     prod = obtenerProductoPorID(id)
-    prod.stock = true;
+    prod.stock = false;
     return await editarProductoPorID(id, prod);
 };
 

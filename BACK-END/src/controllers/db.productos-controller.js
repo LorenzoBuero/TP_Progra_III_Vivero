@@ -1,6 +1,6 @@
 //import sequelize from "./config/db_mysql.js";
 //import Producto from "./models/producto.model.js";
-import {crearProducto, obtenerTodosLosProductos, obtenerProductoPorID, editarProductoPorID, desactivarProductoPorID, activarPorID} from "../services/producto.service.js"
+import {crearProducto, obtenerTodosLosProductos, obtenerProductoPorID, editarProductoPorID, desactivarProductoPorID, activarProductoPorID} from "../services/producto.service.js"
 
 
 export const crear = (req, res) => {
@@ -79,11 +79,11 @@ export const editar = async (req, res) => {
 }
 
 const desactivar = async (id) => {
-    await desactivarProductoPorID(false);
+    await desactivarProductoPorID(id);
 }
 
 const activar = async (id) => {
-    await activarPorID(true);
+    await activarProductoPorID(id);
 }
 
 export const activarYDesactivar = async (req, res) => {
@@ -91,18 +91,19 @@ export const activarYDesactivar = async (req, res) => {
     const producto = await obtenerProductoPorID(req.params.id);
     try {
         
-        if (producto.stock == true){
+        if (producto.stock == false){
             await activar();
         }
         else{
             await desactivar();
         }
         
-        if(req.params.destino == "dashboard"){
-            res.redirect("/administrador/dashboard");
-        } else{
-            res.status(200);
-        }
+        console.log("AAAAAAAAAAAAAAAA");
+        
+        res.redirect("/administrador/dashboard");
+        
+        //    res.status(200);
+        
     } catch (error) {
         res.status(500);
     }
