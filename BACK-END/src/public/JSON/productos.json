@@ -45,15 +45,6 @@
         
     },
     {
-        "id":6,
-        "nombre":"sanguche de miga",
-        "categoria":-2,
-        "stock":true,
-        "precio":2000.00,
-        "imagen":"../imagenes/datos/productos/sanguche_de_miga.jpg"
-        
-    },
-    {
         "id":7,
         "nombre":"álamo",
         "categoria":2,

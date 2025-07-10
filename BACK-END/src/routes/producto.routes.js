@@ -4,7 +4,7 @@ import { fileURLToPath } from "url";
 import fs from "fs/promises";
 import { requiereAutenticacion } from "../middlewares/autenticacion.middleware.js";
 import { inyeccionInputs } from "../middlewares/inyeccion.middleware.js";
-import { upload } from "../middlewares/upload.middleware.js";
+import { uploadImage } from "../middlewares/uploadImage.middleware.js";
 
 const router = express.Router();
 const __dirname = path.dirname(fileURLToPath(import.meta.url));

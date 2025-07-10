@@ -5,12 +5,14 @@ import path from "path";
 import Producto from "../models/producto.model.js";
 import Categoria from "../models/categoria.model.js"; // asumí que lo tenés
 import { requiereAutenticacion } from "../middlewares/autenticacion.middleware.js";
+import { inyeccionInputs } from "../middlewares/inyeccion.middleware.js"
+import { uploadImage } from "../middlewares/uploadImage.middleware.js"
 
 const router = express.Router();
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "src/public/imagenes/productos/");
+    cb(null, "src/public/imagenes/datos/productos/");
   },
   filename: function (req, file, cb) {
     const uniqueName = Date.now() + "-" + file.originalname;
@@ -22,7 +24,7 @@ const upload = multer({ storage });
 
 // Mostrar dashboard (listado productos)
 router.get("/admin/dashboard", requiereAutenticacion, async (req, res) => {
-    try {
+  try {
     const productos = await Producto.findAll({
       include: {
         model: Categoria,
@@ -52,7 +54,7 @@ router.get("/admin/productos/nuevo", requiereAutenticacion, async (req, res) => 
 router.post("/admin/productos", requiereAutenticacion, upload.single("imagen"), async (req, res) => {
   try {
     const { nombre, categoriaFK, precio } = req.body;
-    const imagen = `/imagenes/productos/${req.file.filename}`;
+    const imagen = `../imagenes/datos/productos/${req.file.filename}`;
 
     await Producto.create({
       nombre,
@@ -97,14 +99,14 @@ router.post("/admin/productos/:id/editar", requiereAutenticacion, upload.single(
     producto.precio = precio;
 
     if (req.file) {
-      producto.imagen = `/imagenes/productos/${req.file.filename}`;
+      producto.imagen = `../imagenes/datos/productos/${req.file.filename}`;
     }
 
     await producto.save();
 
     res.redirect("/admin/dashboard");
   } catch (error) {
-    console.error("Error al editar producto:", error);
+    console.log("Error al editar producto:", error);
     res.status(500).send("Error al editar producto");
   }
 });
@@ -143,7 +145,7 @@ router.post("/admin/productos/:id/alta", requiereAutenticacion, async (req, res)
 
 
 
-router.post("/admin/login", (req, res) => {
+router.post("/admin/login",  (req, res) => {
   const { email, password } = req.body;
 
   if (email === "admin@vivero.com" && password === "1234") {
