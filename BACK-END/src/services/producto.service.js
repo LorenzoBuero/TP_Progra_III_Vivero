@@ -8,16 +8,22 @@ export const crearProducto = async (producto) => {
     return await Producto.create(producto);
 };
 
-export const obtenerTodosLosProductos = async () => {
+export const obtenerTodosLosProductos = async (limit = 10, offset = 0) => {
   return await Producto.findAll({
-    where: { stock: true }, // solo productos activos
+    where: { stock: true }, //  Solo productos activos
     include: {
       model: Categoria,
       as: "categoria",
-    }
+    },
+    limit,
+    offset,
+    order: [["id", "ASC"]],
   });
 };
 
+export const contarProductos = async () => {
+  return await Producto.count({ where: { stock: true } }); //  Solo contar activos
+};
 
 export const obtenerPorCategoria = async (idCategoria) => {
     return await Producto.findAll({where : {idCategoria : idCategoria}})
