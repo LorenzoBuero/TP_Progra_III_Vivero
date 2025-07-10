@@ -1,0 +1,26 @@
+#btn-tema {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 1000;
+}
+
+
+body.tema-oscuro {
+  background-color: #1e1e1e;
+  color: white;
+}
+
+body.tema-oscuro input,
+body.tema-oscuro button,
+body.tema-oscuro .login-box,
+body.tema-oscuro .admin-link {
+  background-color: #333;
+  color: white;
+  border-color: #555;
+}
+
+
+#grid-productos-DOM{
+  background-color: black;
+}
