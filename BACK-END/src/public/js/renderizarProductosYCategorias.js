@@ -3,7 +3,7 @@ const inputBusqueda = document.getElementById("buscador-productos");
 const tarjetasCategorias = document.querySelectorAll(".tarjeta-categoria");
 const contenedorProductos = document.getElementById("grid-productos-DOM");
 
-let categoriaSeleccionada = null;
+let categoriaSeleccionada = ''; // Inicializamos vacío para que muestre todo
 
 // 🛒 Actualiza contador del carrito
 function actualizarContadorCarrito() {
@@ -16,12 +16,11 @@ function actualizarContadorCarrito() {
 function agregarAlCarrito(productoId, nombre, precio, imagen) {
   let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
   let existente = null;
-  console.log(carrito);
-  
 
   for (let i = 0; i < carrito.length; i++) {
     if (carrito[i].id == productoId) {
       existente = carrito[i];
+      break;
     }
   }
 
@@ -70,8 +69,10 @@ function filtrarProductos() {
     const nombre = tarjeta.querySelector("p").textContent.toLowerCase();
     const categoria = tarjeta.getAttribute("data-categoria");
 
+    console.log("Producto categoría:", categoria, " - Categoria seleccionada:", categoriaSeleccionada);
+
     const coincideTexto = nombre.indexOf(texto) !== -1;
-    const coincideCategoria = categoriaSeleccionada === null || categoria == categoriaSeleccionada;
+    const coincideCategoria = categoriaSeleccionada === null || categoriaSeleccionada === '' || categoria == categoriaSeleccionada;
 
     tarjeta.style.display = (coincideTexto && coincideCategoria) ? "" : "none";
   }

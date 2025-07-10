@@ -39,7 +39,7 @@
       <h2>🌱 Nuestros productos</h2>
       <div id="grid-productos-DOM">
         <% productos.forEach(producto => { %>
-          <div class="tarjeta-producto" data-id="<%= producto.id %>" data-categoria="<%= producto.categoria %>">
+          <div class="tarjeta-producto" data-id="<%= producto.id %>" data-categoria="<%= producto.categoriaFK %>">
             <img src="<%= producto.imagen %>" alt="<%= producto.nombre %>" />
             <p><%= producto.nombre %></p>
             <p><strong>$<%= producto.precio %></strong></p>
