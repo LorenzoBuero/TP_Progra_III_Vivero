@@ -86,7 +86,7 @@ router.get("/admin/productos/:id/editar", requiereAutenticacion, async (req, res
 });*/
 
 // Editar producto (POST en vez de PUT)
-router.post("/admin/productos/:id/editar", requiereAutenticacion, upload.single("imagen"), async (req, res) => {
+router.post("/administrador/productos/:id/editar", requiereAutenticacion, upload.single("imagen"), async (req, res) => {
   try {
     const { nombre, categoriaFK, precio } = req.body;
     const id = req.params.id;
@@ -104,7 +104,7 @@ router.post("/admin/productos/:id/editar", requiereAutenticacion, upload.single(
 
     await producto.save();
 
-    res.redirect("/dashboard");
+    res.redirect("/administrador/dashboard");
   } catch (error) {
     console.log("Error al editar producto:", error);
     res.status(500).send("Error al editar producto");

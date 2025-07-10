@@ -1,5 +1,6 @@
 //import sequelize from "./config/db_mysql.js";
 import Producto from "../models/producto.model.js";
+import Categoria from "../models/categoria.model.js";
 
 
 export const crearProducto = async (producto) => {
@@ -7,8 +8,17 @@ export const crearProducto = async (producto) => {
     return await Producto.create(producto);
 };
 
-export const obtenerTodosLosProductos = async () => {
-    return await Producto.findAll()
+export const obtenerTodosLosProductos = async (opciones = {}) => {
+  const include = [];
+
+  if (opciones.incluirCategoria) {
+    include.push({
+      model: Categoria,
+      as: "categoria"
+    });
+  }
+
+  return await Producto.findAll({ include });
 };
 
 export const obtenerProductoPorID = async (id) => {

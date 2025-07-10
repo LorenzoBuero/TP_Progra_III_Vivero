@@ -25,9 +25,10 @@ export const productosCliente = async (req, res) => {
 export const dashboard = async (req, res) => {
 
     try {
-        const productos = await obtenerTodosLosProductos();
+        const productos = await obtenerTodosLosProductos({ incluirCategoria: true });
         res.render("adminDashboard.ejs", { productos });
     } catch (error) {
+        console.error(error)
         res.status(500).send("Error al obtener los productos");
     }
 }
