@@ -91,30 +91,10 @@ const productosDefault = [
         stock:true,
         precio:4000.20,
         imagen:"../imagenes/datos/productos/burrito.jpg"
-    },
-    {
-        nombre:"jacarandá",
-        categoria:2,
-        stock:true,
-        precio:15000.00,
-        imagen:"../public/imagenes/datos/productos/jacaranda.jpg"
-    },
-    {
-        nombre:"pala de mano abuelita-Jardinera",
-        categoria:0,
-        stock: true,
-        precio: 5000.00,
-        imagen: "../public/imagenes/datos/productos/pala_de_mano_Abuela.jpg"
-    },
-    {
-        nombre: "aloe vera",
-        categoria: 6,
-        stock: false,
-        precio: 2000.00,
-        imagen: "../public/imagenes/datos/productos/aloe_vera.jpg"
-    }
-];
 
+    }]
+//---------------------------------------------------------------------------
+//---------------------------------------------------------------------------
 const categorias = [
     {
         nombre:"otros--no-plantas",
@@ -200,17 +180,4 @@ export const subirDatos = async () => {
         console.log("Agregando *admins* a la DB");
         await subirAdminsADB(admins);
     }
-};
-
-// ------- Reinicio forzado -------
-export const resubirDatos = async () => {
-    await Producto.drop();
-    await Categoria.drop();
-    await Admin.drop();
-
-    await sequelize.sync({ force: true }); // recrear estructura
-
-    await subirCategoriasADB(categorias);
-    await subirProductosADB(productosDefault);
-    await subirAdminsADB(admins);
-};
+}
