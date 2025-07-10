@@ -5,7 +5,6 @@ import { crear, editar, activarYDesactivar, obtenerTodos, obtenerUnoPorID } from
 
 const router = express.Router();
 
-// GET /api/productos → crea prodcto
 // POST /api/productos → agregar nuevo producto
 router.post("/", requiereAutenticacion, inyeccionInputs, crear);
 
@@ -16,7 +15,6 @@ router.get("/:id", obtenerUnoPorID);
 
 //PUT /api/productos/alternarStock/:id → activar o desactivar producto 
 router.put("/alternarStock/:id", activarYDesactivar);
-
 // PUT /api/productos/:id → actualizar producto
 router.put("/:id", requiereAutenticacion,inyeccionInputs, editar);
 
