@@ -150,7 +150,7 @@ router.post("/admin/login",  (req, res) => {
 
   if (email === "admin@vivero.com" && password === "1234") {
     req.session.usuarioAutenticado = true;
-    res.redirect("/dashboard");
+    res.redirect("/administrador/dashboard");
   } else {
     res.status(401).send("Credenciales incorrectas. <a href='/admin'>Volver</a>");
   }
