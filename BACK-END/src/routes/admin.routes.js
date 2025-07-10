@@ -1,18 +1,21 @@
 // admin.routes.js
 import express from "express";
 import multer from "multer";
-import path from "path";
+//import path from "path";
 import Producto from "../models/producto.model.js";
-import Categoria from "../models/categoria.model.js"; // asumí que lo tenés
+//import Categoria from "../models/categoria.model.js"; // asumí que lo tenés
 import { requiereAutenticacion } from "../middlewares/autenticacion.middleware.js";
 import { inyeccionInputs } from "../middlewares/inyeccion.middleware.js"
 import { uploadImage } from "../middlewares/uploadImage.middleware.js"
+
+
+const RUTA_IMAGENES= "../public/imagenes/datos/productos/";
 
 const router = express.Router();
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "src/public/imagenes/datos/productos/");
+    cb(null, RUTA_IMAGENES);
   },
   filename: function (req, file, cb) {
     const uniqueName = Date.now() + "-" + file.originalname;
@@ -22,24 +25,20 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-// Mostrar dashboard (listado productos)
-router.get("/admin/dashboard", requiereAutenticacion, async (req, res) => {
+ //dashboard (listado productos)
+/*router.g/dashboard", requiereAutenticacion, async (req, res) => {
   try {
-    const productos = await Producto.findAll({
-      include: {
-        model: Categoria,
-        as: "categoria",
-        attributes: ['id', 'nombre', 'imagen']  // opcional
-      }
-    });
+    const productos = await obtenerTodosLosProductos();
     res.render("adminDashboard.ejs", { productos });
+    
   } catch (error) {
     console.error(error);
-    res.status(500).send("Error al cargar dashboard");
+    res.status(500).send("Error dashboard");
   }
-});
+});*/
 
 // Formulario alta producto
+/*
 router.get("/admin/productos/nuevo", requiereAutenticacion, async (req, res) => {
   try {
     const categorias = await Categoria.findAll();
@@ -48,13 +47,13 @@ router.get("/admin/productos/nuevo", requiereAutenticacion, async (req, res) => 
     console.error(error);
     res.status(500).send("Error al cargar formulario alta producto");
   }
-});
+});*/
 
 // Crear producto (POST)
 router.post("/admin/productos", requiereAutenticacion, upload.single("imagen"), async (req, res) => {
   try {
     const { nombre, categoriaFK, precio } = req.body;
-    const imagen = `../imagenes/datos/productos/${req.file.filename}`;
+    const imagen = `${RUTA_IMAGENES}${req.file.filename}`;
 
     await Producto.create({
       nombre,
@@ -64,13 +63,14 @@ router.post("/admin/productos", requiereAutenticacion, upload.single("imagen"), 
       imagen
     });
 
-    res.redirect("/admin/dashboard");
+    res.redirect("/dashboard");
   } catch (error) {
     console.error("Error al crear producto:", error);
     res.status(500).send("Error al crear producto");
   }
 });
 
+/*
 // Formulario editar producto
 router.get("/admin/productos/:id/editar", requiereAutenticacion, async (req, res) => {
   try {
@@ -83,7 +83,7 @@ router.get("/admin/productos/:id/editar", requiereAutenticacion, async (req, res
     console.error(error);
     res.status(500).send("Error al cargar producto para editar");
   }
-});
+});*/
 
 // Editar producto (POST en vez de PUT)
 router.post("/admin/productos/:id/editar", requiereAutenticacion, upload.single("imagen"), async (req, res) => {
@@ -99,18 +99,18 @@ router.post("/admin/productos/:id/editar", requiereAutenticacion, upload.single(
     producto.precio = precio;
 
     if (req.file) {
-      producto.imagen = `../imagenes/datos/productos/${req.file.filename}`;
+      producto.imagen = `${RUTA_IMAGENES}${req.file.filename}`;
     }
 
     await producto.save();
 
-    res.redirect("/admin/dashboard");
+    res.redirect("/dashboard");
   } catch (error) {
     console.log("Error al editar producto:", error);
     res.status(500).send("Error al editar producto");
   }
 });
-
+/*
 // Dar de baja producto (POST)
 router.post("/admin/productos/:id/baja", requiereAutenticacion, async (req, res) => {
   try {
@@ -120,7 +120,7 @@ router.post("/admin/productos/:id/baja", requiereAutenticacion, async (req, res)
     producto.stock = false; // baja lógica
     await producto.save();
 
-    res.redirect("/admin/dashboard");
+    res.redirect("/dashboard");
   } catch (error) {
     console.error("Error al dar baja producto:", error);
     res.status(500).send("Error al dar baja producto");
@@ -136,12 +136,12 @@ router.post("/admin/productos/:id/alta", requiereAutenticacion, async (req, res)
     producto.stock = true; // alta lógica
     await producto.save();
 
-    res.redirect("/admin/dashboard");
+    res.redirect("/dashboard");
   } catch (error) {
     console.error("Error al dar alta producto:", error);
     res.status(500).send("Error al dar alta producto");
   }
-});
+});*/
 
 
 
@@ -150,7 +150,7 @@ router.post("/admin/login",  (req, res) => {
 
   if (email === "admin@vivero.com" && password === "1234") {
     req.session.usuarioAutenticado = true;
-    res.redirect("/admin/dashboard");
+    res.redirect("/dashboard");
   } else {
     res.status(401).send("Credenciales incorrectas. <a href='/admin'>Volver</a>");
   }

@@ -7,31 +7,31 @@ export const crearProducto = async (producto) => {
     return await Producto.create(producto);
 };
 
-export const obtenerPorCategoria = async (idCategoria) => {
-    return await Producto.findAll({where : {idCategoria : idCategoria}})
+export const obtenerTodosLosProductos = async () => {
+    return await Producto.findAll()
 };
 
-export const obtenerPorID = async (id) => {
+export const obtenerProductoPorID = async (id) => {
 
     return await Producto.findByPk(id);
 };
 
-export const editarPorID = async (id, producto) => {
+export const editarProductoPorID = async (id, producto) => {
     return await Producto.user(producto, {where : {id : id}})
 }
 
-export const desactivarPorID = async (id) =>{
+export const desactivarProductoPorID = async (id) =>{
 
-    prod = obtenerPorID(id)
+    prod = obtenerProductoPorID(id)
     prod.stock = false;
-    return await editarPorID(id, prod);
+    return await editarProductoPorID(id, prod);
 };
 
 export const activarPorID = async (id) =>{
 
-    prod = obtenerPorID(id)
+    prod = obtenerProductoPorID(id)
     prod.stock = true;
-    return await editarPorID(id, prod);
+    return await editarProductoPorID(id, prod);
 };
 
 

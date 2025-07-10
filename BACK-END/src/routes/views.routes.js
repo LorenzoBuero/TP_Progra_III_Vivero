@@ -1,52 +1,30 @@
 import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
-import fs from "fs/promises";
 import { requiereAutenticacion } from "../middlewares/autenticacion.middleware.js";
+import { productosCliente, dashboard, crearProducto, editarProducto, main, loginAdmin, carrito, ticket } from "../controllers/views-controller.js";
+
 
 const router = express.Router();
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
-// Ruta: / → Página login cliente (HTML estático)
-router.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "..", "public", "index.html"));
-});
-
-// Ruta: /admin → Página login administrador (HTML estático)
-router.get("/admin", (req, res) => {
-  res.sendFile(path.join(__dirname, "..", "public", "paginas", "adminLogin.html"));
-});
-
-// Ruta: /carrito → Página carrito (HTML estático)
-router.get("/carrito", requiereAutenticacion, (req, res) => {
-  res.sendFile(path.join(__dirname, "..", "public", "paginas", "carrito.html"));
-});
 
 
-// Ruta: /ticket → Página de ticket (HTML estático)
-router.get("/ticket", requiereAutenticacion, (req, res) => {
-  res.sendFile(path.join(__dirname, "..", "public", "paginas", "ticket.html"));
-});
+//EJS
+router.get("/cliente/productos", requiereAutenticacion, productosCliente);
 
-// Ruta: /productos → Página que renderiza productos (EJS)
-router.get("/productos", requiereAutenticacion, async (req, res) => {
-  try {
-    const categoriasPath = path.join(__dirname, "..", "public", "JSON", "categorias.json");
-    const productosPath = path.join(__dirname, "..", "public", "JSON", "productos.json");
+router.get("/administrador/dashboard", requiereAutenticacion, dashboard);
 
-    const categoriasJSON = await fs.readFile(categoriasPath, "utf-8");
-    const productosJSON = await fs.readFile(productosPath, "utf-8");
+router.get("/administrador/dashboard/crear", requiereAutenticacion, crearProducto);
 
-    const categorias = JSON.parse(categoriasJSON);
-    const productos = JSON.parse(productosJSON).filter(p => p.stock === true);
+router.get("/administrador/dashboard/:idProducto/editar", editarProducto);
 
-    res.render("productos.ejs", { productos, categorias });
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Error al cargar productos o categorías");
-  }
-});
+// HTML estático
+router.get("/", main);
 
+router.get("/administradorLogin", loginAdmin);
+
+router.get("/cliente/carrito", requiereAutenticacion, carrito);
+
+router.get("/cliente/ticket", requiereAutenticacion, ticket);
 
 
 // Login cliente (POST)

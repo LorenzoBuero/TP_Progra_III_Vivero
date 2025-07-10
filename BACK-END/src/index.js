@@ -8,6 +8,7 @@ import "./models/asociaciones.model.js";
 import productosRouter from "./routes/producto.routes.js";
 import viewsRouter from "./routes/views.routes.js";
 import adminRouter from "./routes/admin.routes.js"
+import categoriasRouter from "./routes/categorias.routes.js"
 import { subirDatos } from "./config/db_setup.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -34,7 +35,10 @@ app.use(session({
 app.use(express.json());
 
 // Rutas API (productos CRUD)
-app.use("/api/productos", productosRouter);
+app.use("/productos", productosRouter);
+
+// Rutas categorias
+app.use("/categorias", categoriasRouter)
 
 // Rutas vistas (HTML + EJS)
 app.use("/", viewsRouter);
