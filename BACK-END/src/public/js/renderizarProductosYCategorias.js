@@ -3,7 +3,7 @@ const inputBusqueda = document.getElementById("buscador-productos");
 const tarjetasCategorias = document.querySelectorAll(".tarjeta-categoria");
 const contenedorProductos = document.getElementById("grid-productos-DOM");
 
-let categoriaSeleccionada = ''; // Inicializamos vacío para que muestre todo
+let categoriaSeleccionada = null;
 
 // 🛒 Actualiza contador del carrito
 function actualizarContadorCarrito() {
@@ -69,12 +69,15 @@ function filtrarProductos() {
     const nombre = tarjeta.querySelector("p").textContent.toLowerCase();
     const categoria = tarjeta.getAttribute("data-categoria");
 
-    console.log("Producto categoría:", categoria, " - Categoria seleccionada:", categoriaSeleccionada);
-
     const coincideTexto = nombre.indexOf(texto) !== -1;
-    const coincideCategoria = categoriaSeleccionada === null || categoriaSeleccionada === '' || categoria == categoriaSeleccionada;
 
-    tarjeta.style.display = (coincideTexto && coincideCategoria) ? "" : "none";
+    // Convertir ambos a string para comparar correctamente
+    const coincideCategoria =
+      categoriaSeleccionada === null || categoriaSeleccionada === "" // si no hay selección, mostrar todo
+        ? true
+        : String(categoria) === String(categoriaSeleccionada);
+
+    tarjeta.style.display = coincideTexto && coincideCategoria ? "" : "none";
   }
 
   asignarEventosBotonesAgregar();
@@ -83,12 +86,18 @@ function filtrarProductos() {
 // Evento click de categoría
 for (let i = 0; i < tarjetasCategorias.length; i++) {
   tarjetasCategorias[i].addEventListener("click", function () {
-    for (let j = 0; j < tarjetasCategorias.length; j++) {
-      tarjetasCategorias[j].classList.remove("activa");
+    // Si ya estaba activa, desactivar el filtro
+    if (this.classList.contains("activa")) {
+      this.classList.remove("activa");
+      categoriaSeleccionada = null;
+    } else {
+      // Desactivar todas las demás
+      for (let j = 0; j < tarjetasCategorias.length; j++) {
+        tarjetasCategorias[j].classList.remove("activa");
+      }
+      this.classList.add("activa");
+      categoriaSeleccionada = this.getAttribute("data-id");
     }
-
-    this.classList.add("activa");
-    categoriaSeleccionada = this.getAttribute("data-id");
     filtrarProductos();
   });
 }

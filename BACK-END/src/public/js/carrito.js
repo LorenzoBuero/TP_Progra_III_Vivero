@@ -104,7 +104,7 @@ btnConfirmar.addEventListener("click", function() {
   localStorage.removeItem("carrito");
 
   // Redirige a ticket 
-  window.location.href = "/cliente/ticket";
+  window.location.href = "/ticket";
 });
 
 // Vaciar carrito

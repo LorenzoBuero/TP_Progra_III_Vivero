@@ -1,30 +1,37 @@
 import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
+import fs from "fs/promises";
 import { requiereAutenticacion } from "../middlewares/autenticacion.middleware.js";
-import { productosCliente, dashboard, crearProducto, editarProducto, main, loginAdmin, carrito, ticket } from "../controllers/views-controller.js";
-
+import { productosCliente } from "../controllers/views.controller.js";
 
 const router = express.Router();
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+// Ruta: / → Página login cliente (HTML estático)
+router.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "..", "public", "index.html"));
+});
+
+// Ruta: /admin → Página login administrador (HTML estático)
+router.get("/admin", (req, res) => {
+  res.sendFile(path.join(__dirname, "..", "public", "paginas", "adminLogin.html"));
+});
+
+// Ruta: /carrito → Página carrito (HTML estático)
+router.get("/carrito", requiereAutenticacion, (req, res) => {
+  res.sendFile(path.join(__dirname, "..", "public", "paginas", "carrito.html"));
+});
 
 
-//EJS
-router.get("/cliente/productos", requiereAutenticacion, productosCliente);
+// Ruta: /ticket → Página de ticket (HTML estático)
+router.get("/ticket", requiereAutenticacion, (req, res) => {
+  res.sendFile(path.join(__dirname, "..", "public", "paginas", "ticket.html"));
+});
 
-router.get("/administrador/dashboard", requiereAutenticacion, dashboard);
+// Ruta: /productos → Página que renderiza productos (EJS)
+router.get("/productos", requiereAutenticacion, productosCliente);
 
-router.get("/administrador/dashboard/crear", requiereAutenticacion, crearProducto);
-
-router.get("/administrador/dashboard/:idProducto/editar", editarProducto);
-
-// HTML estático
-router.get("/", main);
-
-router.get("/administradorLogin", loginAdmin);
-
-router.get("/cliente/carrito", requiereAutenticacion, carrito);
-
-router.get("/cliente/ticket", requiereAutenticacion, ticket);
 
 
 // Login cliente (POST)

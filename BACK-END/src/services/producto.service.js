@@ -8,40 +8,42 @@ export const crearProducto = async (producto) => {
     return await Producto.create(producto);
 };
 
-export const obtenerTodosLosProductos = async (opciones = {}) => {
-  const include = [];
-
-  if (opciones.incluirCategoria) {
-    include.push({
+export const obtenerTodosLosProductos = async () => {
+  return await Producto.findAll({
+    where: { stock: true }, // solo productos activos
+    include: {
       model: Categoria,
-      as: "categoria"
-    });
-  }
-
-  return await Producto.findAll({ include });
+      as: "categoria",
+    }
+  });
 };
 
-export const obtenerProductoPorID = async (id) => {
+
+export const obtenerPorCategoria = async (idCategoria) => {
+    return await Producto.findAll({where : {idCategoria : idCategoria}})
+};
+
+export const obtenerPorID = async (id) => {
 
     return await Producto.findByPk(id);
 };
 
-export const editarProductoPorID = async (id, producto) => {
+export const editarPorID = async (id, producto) => {
     return await Producto.user(producto, {where : {id : id}})
 }
 
-export const desactivarProductoPorID = async (id) =>{
+export const desactivarPorID = async (id) =>{
 
-    prod = obtenerProductoPorID(id)
-    prod.stock = true;
-    return await editarProductoPorID(id, prod);
+    prod = obtenerPorID(id)
+    prod.stock = false;
+    return await editarPorID(id, prod);
 };
 
-export const activarProductoPorID = async (id) =>{
+export const activarPorID = async (id) =>{
 
-    prod = obtenerProductoPorID(id)
-    prod.stock = false;
-    return await editarProductoPorID(id, prod);
+    prod = obtenerPorID(id)
+    prod.stock = true;
+    return await editarPorID(id, prod);
 };
 
 

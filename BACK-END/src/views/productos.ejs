@@ -16,7 +16,7 @@
       <input type="text" placeholder="Buscar..." class="search-bar" id="buscador-productos" />
     </div>
     <div id="nav-carrito">
-      <a href="/cliente/carrito" class="cart">
+      <a href="/carrito" class="cart">
         <strong>🛒 Carrito:</strong> <span id="cart-count">0</span> productos
       </a>
     </div>
@@ -39,10 +39,15 @@
       <h2>🌱 Nuestros productos</h2>
       <div id="grid-productos-DOM">
         <% productos.forEach(producto => { %>
-          <div class="tarjeta-producto" data-id="<%= producto.id %>" data-categoria="<%= producto.categoriaFK %>">
+          <div 
+            class="tarjeta-producto" 
+            data-id="<%= producto.id %>" 
+            data-categoria="<%= producto.categoria ? producto.categoria.id : '' %>">
+            
             <img src="<%= producto.imagen %>" alt="<%= producto.nombre %>" />
             <p><%= producto.nombre %></p>
             <p><strong>$<%= producto.precio %></strong></p>
+            <p class="categoria-label">Categoría: <%= producto.categoria ? producto.categoria.nombre : "Sin categoría" %></p>
             <button class="boton-agregar boton verde">Agregar al carrito</button>
           </div>
         <% }) %>
@@ -50,7 +55,7 @@
     </section>
   </main>
 
-  <!-- JavaScript -->
-  <script src="../js/renderizarProductosYCategorias.js"></script>
+  <!-- JS -->
+  <script src="/js/renderizarProductosYCategorias.js"></script>
 </body>
 </html>

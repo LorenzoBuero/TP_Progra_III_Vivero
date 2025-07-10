@@ -22,7 +22,7 @@
         <button type="submit" class="boton-ingresar boton verde">Ingresar</button>
       </form>
       <div class="admin-link boton blanco">
-        <a href="/administradorLogin">Administrador</a>
+        <a href="/admin">Administrador</a>
       </div>
     </div>
   </div>
@@ -69,7 +69,7 @@
           if (!response.ok) throw new Error("Error al iniciar sesión");
 
           localStorage.setItem("nombreUsuario", nombre);
-          window.location.href = "/cliente/productos";
+          window.location.href = "/productos";
         })
         .catch(error => {
           alert("Hubo un problema al iniciar sesión.");

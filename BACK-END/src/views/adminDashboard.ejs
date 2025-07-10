@@ -10,7 +10,7 @@
 <body>
   <header>
     <h1>Panel de Administración - Vivero</h1>
-    <a href="/administrador/dashboard/crear" class="boton boton-verde">Agregar Producto</a>
+    <a href="/admin/productos/nuevo" class="boton boton-verde">Agregar Producto</a>
   </header>
 
   <main>
@@ -25,14 +25,16 @@
             <p>Precio: $<%= producto.precio %></p>
             <p>Estado: <%= producto.stock ? "Activo" : "Inactivo" %></p>
             <div class="acciones">
-            <form action="/productos/alternarStock/<%= producto.id %>" method="POST" style="display:inline;"> 
               <% if (producto.stock) { %>
-                  <button type="submit">Desactivar</button>
+                <form action="/admin/productos/<%= producto.id %>/baja" method="POST" style="display:inline;">
+                  <button type="submit">Eliminar</button>
+                </form>
               <% } else { %>
+                <form action="/admin/productos/<%= producto.id %>/alta" method="POST" style="display:inline;">
                   <button type="submit">Activar</button>
+                </form>
               <% } %>
-            </form>
-            <a href="/administrador/dashboard/<%= producto.id %>/editar" class="boton azul">Editar</a>
+              <a href="/admin/productos/<%= producto.id %>/editar" class="boton azul">Editar</a>
             </div>
           </div>
         <% }) %>
