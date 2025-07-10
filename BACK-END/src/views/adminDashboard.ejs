@@ -25,14 +25,14 @@
             <p>Precio: $<%= producto.precio %></p>
             <p>Estado: <%= producto.stock ? "Activo" : "Inactivo" %></p>
             <div class="acciones">
-            <form action="/administrador/dashboard/alternarStock/<%= producto.id %>/dashboard" method="POST" style="display:inline;"></form>  
+            <form action="/productos/alternarStock/<%= producto.id %>/dashboard" method="POST" style="display:inline;"> 
               <% if (producto.stock) { %>
                   <button type="submit">Desactivar</button>
               <% } else { %>
                   <button type="submit">Activar</button>
               <% } %>
-              </form>
-              <a href="/administrador/dashboard/<%= producto.id %>/editar" class="boton azul">Editar</a>
+            </form>
+            <a href="/administrador/dashboard/<%= producto.id %>/editar" class="boton azul">Editar</a>
             </div>
           </div>
         <% }) %>

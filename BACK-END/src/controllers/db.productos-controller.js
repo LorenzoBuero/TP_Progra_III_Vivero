@@ -87,16 +87,16 @@ const activar = async (id) => {
 }
 
 export const activarYDesactivar = async (req, res) => {
-
-    const producto = await obtenerProductoPorID(req.id);
+    console.log("fua")
+    const producto = await obtenerProductoPorID(req.params.id);
     try {
+        
         if (producto.stock == true){
             await activar();
         }
         else{
             await desactivar();
         }
-        
         
         if(req.params.destino == "dashboard"){
             res.redirect("/administrador/dashboard");
