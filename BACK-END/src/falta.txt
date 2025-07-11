@@ -4,10 +4,6 @@ responsive --> 30 minutos
 
 controllers --> 1:30 hora lorenzo buero
 
-verificar middlewares (1/3)
-
-paginacion --> no tenemos ni idea
-
 deploy
 
 poner nuestros nombres y apellidos en la pagina --> 10 minutos

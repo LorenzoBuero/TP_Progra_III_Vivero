@@ -6,9 +6,12 @@
   <title>Productos</title>
   <link rel="stylesheet" href="/styles/estiloClientes.css" />
   <link rel="stylesheet" href="/styles/estiloGeneral.css" />
+  <link rel="stylesheet" href="/styles/estiloTema.css" />
 </head>
 <body>
-
+    <div class="autores">
+    <p>Franco Gil y Lorenzo Buero</p>
+  </div>
   <!-- Navbar -->
   <nav id="navbar">
     <div id="nav-logo-y-nombre"><span class="logo">🌿 Vivero Natural</span></div>
@@ -39,23 +42,36 @@
       <h2>🌱 Nuestros productos</h2>
       <div id="grid-productos-DOM">
         <% productos.forEach(producto => { %>
-          <div 
-            class="tarjeta-producto" 
-            data-id="<%= producto.id %>" 
-            data-categoria="<%= producto.categoria ? producto.categoria.id : '' %>">
-            
+          <div class="tarjeta-producto" data-id="<%= producto.id %>" data-categoria="<%= producto.categoriaFK %>">
             <img src="<%= producto.imagen %>" alt="<%= producto.nombre %>" />
             <p><%= producto.nombre %></p>
             <p><strong>$<%= producto.precio %></strong></p>
-            <p class="categoria-label">Categoría: <%= producto.categoria ? producto.categoria.nombre : "Sin categoría" %></p>
             <button class="boton-agregar boton verde">Agregar al carrito</button>
           </div>
         <% }) %>
       </div>
     </section>
-  </main>
 
-  <!-- JS -->
-  <script src="/js/renderizarProductosYCategorias.js"></script>
+    <!-- Paginación -->
+    <nav class="paginacion">
+      <% if (currentPage > 1) { %>
+        <a href="/productos?page=<%= currentPage - 1 %>">Anterior</a>
+      <% } %>
+
+      <% for(let i = 1; i <= totalPages; i++) { %>
+        <% if (i === currentPage) { %>
+          <span><%= i %></span>
+        <% } else { %>
+          <a href="/productos?page=<%= i %>"><%= i %></a>
+        <% } %>
+      <% } %>
+
+      <% if (currentPage < totalPages) { %>
+        <a href="/productos?page=<%= currentPage + 1 %>">Siguiente</a>
+      <% } %>
+    </nav>
+  </main>
+  <script src="../js/tema.js"></script>
+  <script src="../js/renderizarProductosYCategorias.js"></script>
 </body>
 </html>
