@@ -146,10 +146,12 @@ router.post("/admin/productos/:id/alta", requiereAutenticacion, async (req, res)
 
 
 
-router.post("/admin/login",  (req, res) => {
+router.post("/admin/login", async (req, res) => {
   const { email, password } = req.body;
 
-  if (verificarAdmin(email, password)) {
+  const esValido = await verificarAdmin(email, password);
+
+  if (esValido) {
     req.session.usuarioAutenticado = true;
     res.redirect("/admin/dashboard");
   } else {
