@@ -111,3 +111,14 @@ BOTONES
   background-color: var(--verde-intermedio);
   color: var(--blanco);
 }
+
+
+.autores {
+  text-align: center;
+  padding: 10px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  background-color: #e6ffe6;
+  color: #2d572c;
+  border-bottom: 2px solid #c4e3cb;
+}

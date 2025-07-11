@@ -2,10 +2,27 @@
   position: fixed;
   top: 10px;
   right: 10px;
-  z-index: 1000;
+  width: 36px;
+  height: 36px;
+  font-size: 16px;
+  border-radius: 50%;
+  border: none;
+  background-color: #e0e0e0;
+  cursor: pointer;
+  z-index: 999;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s, color 0.3s;
 }
 
+body.tema-oscuro #btn-tema {
+  background-color: #444;
+  color: white;
+}
 
+/* 🌒 Tema oscuro general */
 body.tema-oscuro {
   background-color: #1e1e1e;
   color: white;
@@ -18,9 +35,4 @@ body.tema-oscuro .admin-link {
   background-color: #333;
   color: white;
   border-color: #555;
-}
-
-
-#grid-productos-DOM{
-  background-color: black;
 }
