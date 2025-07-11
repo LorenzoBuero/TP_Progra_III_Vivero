@@ -8,6 +8,7 @@ import "./models/asociaciones.model.js";
 import productosRouter from "./routes/producto.routes.js";
 import viewsRouter from "./routes/views.routes.js";
 import adminRouter from "./routes/admin.routes.js"
+import ventasRoutes from "./routes/ventas.routes.js";
 import { subirDatos } from "./config/db_setup.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -30,7 +31,7 @@ app.use(session({
   cookie: { maxAge: 1000 * 60 * 60 } // 1 hora
 }));
 
-// Middleware para parsear JSON (importante para POST y PUT con body JSON)
+// Middleware para parsear JSON 
 app.use(express.json());
 
 // Rutas API (productos CRUD)
@@ -41,6 +42,9 @@ app.use("/", viewsRouter);
 
 // Rutas admin
 app.use("/", adminRouter)
+
+//rutas ventas
+app.use(ventasRoutes)
 
 async function iniciar() {
   try {

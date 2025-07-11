@@ -39,6 +39,7 @@
 
   <div class="acciones">
     <button onclick="descargarPDF()">Descargar Ticket en PDF</button>
+    <button onclick="confirmarCompra()" style="margin-left: 10px; background-color: #4CAF50; color: white; border: none; padding: 0.5rem 1rem; cursor: pointer;">Confirmar compra</button>
   </div>
 
   <script src="/js/tema.js"></script>
@@ -62,7 +63,7 @@
         <td>${p.nombre}</td>
         <td>${p.cantidad}</td>
         <td>$${p.precio}</td>
-        <td>$${p.precio * p.cantidad}</td>
+        <td>$${(p.precio * p.cantidad).toFixed(2)}</td>
       `;
       tbody.appendChild(tr);
     });
@@ -77,6 +78,46 @@
         jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
       };
       html2pdf().set(opciones).from(ticket).save();
+    }
+
+    async function confirmarCompra() {
+      const comprador = localStorage.getItem("nombreUsuario") || "Anónimo";
+      const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+      const productos = carrito.map(p => ({
+        idProducto: p.id,
+        cantidad: p.cantidad
+      }));
+
+      if (productos.length === 0) {
+        alert("No hay productos en el carrito para comprar.");
+        return;
+      }
+
+      try {
+        console.log("➡️ Enviando a backend:", { comprador, productos });
+        const res = await fetch("/ventas/confirmar", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ comprador, productos })
+        });
+
+        if (!res.ok) throw new Error("Error al confirmar compra");
+
+        const data = await res.json();
+
+        alert("Compra guardada con éxito. Número de venta: " + data.ventaId);
+
+        // Vaciar carrito y ticket
+        localStorage.removeItem("carrito");
+        localStorage.removeItem("ticket");
+
+        // Redirigir a productos
+        window.location.href = "/productos";
+      } catch (error) {
+        alert("Error al guardar la compra.");
+        console.error(error);
+      }
     }
   </script>
 </body>
