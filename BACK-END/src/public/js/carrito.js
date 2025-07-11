@@ -101,7 +101,7 @@ btnConfirmar.addEventListener("click", function() {
   };
 
   localStorage.setItem("ticket", JSON.stringify(ticket));
-  localStorage.removeItem("carrito");
+  
 
   // Redirige a ticket 
   window.location.href = "/ticket";
