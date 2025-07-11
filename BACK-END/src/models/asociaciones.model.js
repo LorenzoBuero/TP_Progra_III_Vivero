@@ -14,4 +14,4 @@ ventas_producto.belongsTo(Producto, { foreignKey: "fkProducto", as : "idProducto
 ventas_producto.belongsTo(Ventas, { foreignKey: "fkVenta", as : "idVenta"});
 
 Producto.hasMany(ventas_producto, { foreignKey: "fkProducto", as : "relacionVenta"});
-Producto.hasMany(ventas_producto, { foreignKey: "fkVenta", as : "relacionVenta"});
+Ventas.hasMany(ventas_producto, { foreignKey: "fkVenta", as : "relacionProducto"});

@@ -143,6 +143,10 @@ const admins = [
     {
         mail : "lore@perrito.com",
         contrasenia : "mantaraya"
+    },
+    {
+        mail : "admin@vivero.com",
+        contrasenia: "1234"
     }
 ];
 
@@ -170,10 +174,7 @@ const subirProductosADB = async (prods) => {
 
 const subirAdminsADB = async (adms) => {
     for (const adm of adms) {
-        await crearAdmin({
-            mail: adm.mail,
-            contrasenia: adm.contrasenia
-        });
+        await crearAdmin(adm.mail, adm.contrasenia);
     }
 };
 

@@ -10,9 +10,6 @@ const Admin = sequelize.define("admins", {
     },
     mail : {
         type : DataTypes.STRING, 
-        validate : {
-            isEmail : true
-        },
         allowNull : false,
         unique : true,
     },

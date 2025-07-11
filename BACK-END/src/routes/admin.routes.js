@@ -7,6 +7,7 @@ import Categoria from "../models/categoria.model.js"; // asumí que lo tenés
 import { requiereAutenticacion } from "../middlewares/autenticacion.middleware.js";
 import { inyeccionInputs } from "../middlewares/inyeccion.middleware.js"
 import { uploadImage } from "../middlewares/uploadImage.middleware.js"
+import { verificarAdmin } from "../services/admin.service.js";
 
 const router = express.Router();
 
@@ -148,7 +149,7 @@ router.post("/admin/productos/:id/alta", requiereAutenticacion, async (req, res)
 router.post("/admin/login",  (req, res) => {
   const { email, password } = req.body;
 
-  if (email === "admin@vivero.com" && password === "1234") {
+  if (verificarAdmin(email, password)) {
     req.session.usuarioAutenticado = true;
     res.redirect("/admin/dashboard");
   } else {
