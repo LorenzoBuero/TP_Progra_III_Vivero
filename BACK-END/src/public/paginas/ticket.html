@@ -39,7 +39,8 @@
 
   <div class="acciones">
     <button onclick="descargarPDF()">Descargar Ticket en PDF</button>
-    <button onclick="confirmarCompra()" style="margin-left: 10px; background-color: #4CAF50; color: white; border: none; padding: 0.5rem 1rem; cursor: pointer;">Confirmar compra</button>
+   <button onclick="window.location.href='/'" style="margin-left: 10px; background-color: #4CAF50; color: white; border: none; padding: 0.5rem 1rem; cursor: pointer;">Inicio</button>
+
   </div>
 
   <script src="/js/tema.js"></script>
@@ -49,7 +50,7 @@
 
     if (!ticketData) {
       alert("No se encontró ningún ticket.");
-      location.href = "index.html"; // o redireccionar a la tienda
+      location.href = "/"; // o redireccionar a la tienda
     }
 
     document.getElementById("cliente").textContent = ticketData.cliente;
@@ -80,45 +81,8 @@
       html2pdf().set(opciones).from(ticket).save();
     }
 
-    async function confirmarCompra() {
-      const comprador = localStorage.getItem("nombreUsuario") || "Anónimo";
-      const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-
-      const productos = carrito.map(p => ({
-        idProducto: p.id,
-        cantidad: p.cantidad
-      }));
-
-      if (productos.length === 0) {
-        alert("No hay productos en el carrito para comprar.");
-        return;
-      }
-
-      try {
-        console.log("➡️ Enviando a backend:", { comprador, productos });
-        const res = await fetch("/ventas/confirmar", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ comprador, productos })
-        });
-
-        if (!res.ok) throw new Error("Error al confirmar compra");
-
-        const data = await res.json();
-
-        alert("Compra guardada con éxito. Número de venta: " + data.ventaId);
-
-        // Vaciar carrito y ticket
-        localStorage.removeItem("carrito");
-        localStorage.removeItem("ticket");
-
-        // Redirigir a productos
-        window.location.href = "/productos";
-      } catch (error) {
-        alert("Error al guardar la compra.");
-        console.error(error);
-      }
-    }
+    
+  
   </script>
 </body>
 </html>

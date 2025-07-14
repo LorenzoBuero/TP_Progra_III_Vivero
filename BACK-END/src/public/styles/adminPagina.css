@@ -111,3 +111,75 @@ h2 {
     width: 100%;
   }
 }
+
+
+.form-editar {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 500px;
+  margin: 0 auto;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-editar label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.form-editar input[type="text"],
+.form-editar input[type="number"],
+.form-editar input[type="file"],
+.form-editar select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-editar img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.form-editar button[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.form-editar button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+@media (max-width: 600px) {
+  body {
+    padding: 10px;
+  }
+
+  .form-editar {
+    padding: 15px;
+  }
+
+  header h1 {
+    font-size: 1.2rem;
+  }
+
+  .form-editar button[type="submit"] {
+    width: 100%;
+  }
+
+  .form-editar img {
+    max-height: 200px;
+    object-fit: cover;
+  }
+}
