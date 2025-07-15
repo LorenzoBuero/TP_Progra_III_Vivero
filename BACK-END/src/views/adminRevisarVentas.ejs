@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/estiloClientes.css" />
+    <link rel="stylesheet" href="/styles/estiloGeneral.css" />
+    <link rel="stylesheet" href="/styles/estiloTema.css" />
+    <title>Ventas</title>
+</head>
+<body>
+    <nav>
+        <a href="/admin/dashboard">← Volver al Dashboard</a>
+        <h1>Seccion de ventas</h1>
+    </nav>
+
+    <div id="tablas">
+        
+    
+            <div id="tablasTop10">
+
+                <div id="tablaTop10Productos">
+                    
+                </div>
+
+                <div id="tablaTop10Ventas">
+                
+                
+                
+                
+                
+                
+                </div>
+            
+            </div>
+            
+            
+            <div id="divTablaTodasLasVentas">
+                <table id="tablaTodasLasVentas">
+                    <thead>
+                        <tr>
+                            <th>id_compra</th>
+                            <th>comprador</th>
+                            <th>total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% ventas.forEach(venta => { %>
+                        <tr>
+                            <td><%=venta.id%></td>
+                            <td><%=venta.comprador%></td>
+                            <td><%=venta.valorFinal%></td>
+                        </tr>
+                        
+                        <tr>    
+                        <td>nombre del producto</td>
+                        <td>precio unitario</td>
+                        <td>cantidad</td>
+                        <td>precio acumulado</td>
+                        </tr>   
+                        
+                            <% venta.productos.forEach(producto => { %>
+                                <tr>
+                                <td><%=producto.nombre%></td>
+                                <td><%=producto.precio%></td>
+                                <td><%=producto.cantidad%></td>
+                                <td><%=producto.precio * producto.cantidad%></td>
+                                </tr>
+                            <% });%>
+                        <%});%>
+                    </tbody>
+                </table>
+            </div>
+
+        
+    </div>
+
+    
+</body>
+</html>

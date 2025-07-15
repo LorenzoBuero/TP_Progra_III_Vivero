@@ -134,3 +134,8 @@ Productos
   cursor: default;
   border-color: #27ae60;
 }
+
+#tablaTodasLasVentas{
+  background-color: var(--verde-intermedio);
+
+}

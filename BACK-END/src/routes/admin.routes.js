@@ -1,13 +1,14 @@
 // admin.routes.js
 import express from "express";
 import multer from "multer";
-import path from "path";
+//import path from "path";
 import Producto from "../models/producto.model.js";
 import Categoria from "../models/categoria.model.js"; // asumí que lo tenés
 import { requiereAutenticacion } from "../middlewares/autenticacion.middleware.js";
 import { inyeccionInputs } from "../middlewares/inyeccion.middleware.js"
 import { uploadImage } from "../middlewares/uploadImage.middleware.js"
 import { verificarAdmin } from "../services/admin.service.js";
+import { obtenerVentasCompletas, obtenerProductosYSusVentas } from "../services/ventas.service.js";
 
 const router = express.Router();
 
@@ -144,7 +145,29 @@ router.post("/admin/productos/:id/alta", requiereAutenticacion, async (req, res)
   }
 });
 
-router.post("/admin/ventas", requiereAutenticacion, )
+router.get("/admin/ventas", requiereAutenticacion, async (req, res) => {
+
+
+  
+  const productosConCantidad = await obtenerProductosYSusVentas();
+
+  const ventas = await obtenerVentasCompletas();
+
+  let top10Productos = [];
+  let top10Ventas = [];
+
+  productosConCantidad.forEach(prodC => {
+    //filtrar los 10 mejores y ordenarlos
+  });
+  ventas.forEach(prodC => {
+    //filtrar los 10 mejores y ordenarlos
+  });
+
+  console.log(ventas);
+
+  res.render("adminRevisarVentas.ejs", {ventas, top10Productos, top10Ventas});
+
+})
 
 
 
