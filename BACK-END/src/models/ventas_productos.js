@@ -1,7 +1,7 @@
 import sequelize from "../config/db_mysql.js";
 import { DataTypes } from "sequelize";
 
-const ventas_producto = sequelize.define(
+const ventas_productos = sequelize.define(
   "ventas_productos",
   {
     fkVenta: {
@@ -20,10 +20,10 @@ const ventas_producto = sequelize.define(
     },
   },
   {
-    timestamps: false,       // no usamos createdAt / updatedAt
+    //timestamps: false,       // no usamos createdAt / updatedAt
     freezeTableName: true,   // Evita pluralizar nombre de tabla
     id: false,               // Evita que Sequelize agregue campo 'id' automáticamente
   }
 );
 
-export default ventas_producto;
+export default ventas_productos;

@@ -10,7 +10,6 @@ import viewsRouter from "./routes/views.routes.js";
 import adminRouter from "./routes/admin.routes.js"
 import ventasRoutes from "./routes/ventas.routes.js";
 import { subirDatos } from "./config/db_setup.js";
-import { hashearSHA256 } from "./utils/hasheador.js"
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
@@ -62,9 +61,6 @@ async function iniciar() {
 }
 
 iniciar();
-
-console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-hashearSHA256("holisss")
 
 /*sequelize.query("describe productos").then(function(rows) {
     console.log(JSON.stringify(rows));});

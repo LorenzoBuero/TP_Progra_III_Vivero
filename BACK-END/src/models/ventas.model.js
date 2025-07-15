@@ -13,7 +13,7 @@ const Ventas = sequelize.define("ventas", {
     allowNull: false
   }
 }, {
-  timestamps: false,
+  timestamps: true,
   tableName: "ventas"  // Asegurá que el nombre coincida con la tabla real
 });
 

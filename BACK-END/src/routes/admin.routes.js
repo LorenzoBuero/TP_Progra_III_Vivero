@@ -144,6 +144,8 @@ router.post("/admin/productos/:id/alta", requiereAutenticacion, async (req, res)
   }
 });
 
+router.post("/admin/ventas", requiereAutenticacion, )
+
 
 
 router.post("/admin/login", async (req, res) => {
@@ -152,7 +154,7 @@ router.post("/admin/login", async (req, res) => {
   const esValido = await verificarAdmin(email, password);
 
   if (esValido) {
-    req.session.usuarioAutenticado = true;
+      req.session.usuarioAutenticado = true;
     res.redirect("/admin/dashboard");
   } else {
     res.status(401).send("Credenciales incorrectas. <a href='/admin'>Volver</a>");
