@@ -157,7 +157,7 @@ router.get("/admin/ventas", requiereAutenticacion, async (req, res) => {
   let top10Productos = await obtenerTop10ProductosVendidos();
   let top10Ventas = await obtenerTop10VentasMasCaras();
 
-  console.log(ventas);
+  //console.log(ventas);
 
   res.render("adminRevisarVentas.ejs", {ventas, top10Productos, top10Ventas});
 

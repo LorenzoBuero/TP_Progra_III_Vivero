@@ -4,8 +4,8 @@ import Producto from "../models/producto.model.js"
 import { obtenerTodosLosProductos } from "./producto.service.js";
 
 export const crearVentaConProductos = async (comprador, productos) => {
-    console.log(comprador);
-    console.log(productos);
+    //console.log(comprador);
+    //console.log(productos);
     
   
     if (!comprador || !productos || !productos.length) {
@@ -51,7 +51,7 @@ export const obtenerProductosYSusVentas = async () => {
 
     listaProductosCantidad.push({
       producto : prod.nombre,
-      cantidad :0
+      cantidad : 0
     });
   });
 
@@ -141,11 +141,14 @@ export const obtenerTop10ProductosVendidos = async () => {
 
   let top10vendidos = [];
 
+  console.log(productos);
+
   productos.forEach(producto => {
     
     top10vendidos.push(producto);
     
     top10vendidos.sort((a, b) => b.cantidad - a.cantidad); 
+
 
     if(top10vendidos.length === 11){
       top10vendidos.pop();

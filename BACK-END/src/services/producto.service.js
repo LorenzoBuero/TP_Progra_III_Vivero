@@ -8,15 +8,13 @@ export const crearProducto = async (producto) => {
     return await Producto.create(producto);
 };
 
-export const obtenerTodosLosProductos = async (limit = 10, offset = 0) => {
+export const obtenerTodosLosProductos = async () => {
   return await Producto.findAll({
     where: { stock: true }, //  Solo productos activos
     include: {
       model: Categoria,
       as: "categoria",
     },
-    limit,
-    offset,
     order: [["id", "ASC"]],
   });
 };

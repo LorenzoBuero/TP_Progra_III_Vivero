@@ -118,24 +118,24 @@ const categorias = [
         imagen:"../imagenes/datos/categorias/flores.png"
     },
     {
-        nombre:"arboles",
-        imagen:"../imagenes/datos/categorias/arboles.png"
-    },
-    {
         nombre:"cultivos",
         imagen:"../imagenes/datos/categorias/cultivos.png"
+    },
+    {
+        nombre:"arboles",
+        imagen:"../imagenes/datos/categorias/arboles.png"
     },
     {
         nombre:"exoticos",
         imagen:"../imagenes/datos/categorias/Planta-atrapamoscas.png"
     },
     {
-        nombre:"para-el-mate",
-        imagen:"../imagenes/datos/categorias/para-el-mate.png"
-    },
-    {
         nombre:"cactus-y-suculentas",
         imagen:"../imagenes/datos/categorias/cactus-y-suculentas.png"
+    },
+    {
+        nombre:"para-el-mate",
+        imagen:"../imagenes/datos/categorias/para-el-mate.png"
     }
 ];
 
