@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/styles/estiloClientes.css" />
+    <link rel="stylesheet" href="/styles/ventas.css" />
     <link rel="stylesheet" href="/styles/estiloGeneral.css" />
     <link rel="stylesheet" href="/styles/estiloTema.css" />
     <title>Ventas</title>
@@ -20,15 +20,57 @@
             <div id="tablasTop10">
 
                 <div id="tablaTop10Productos">
-                    
+                    <h2>Top 10 productos más vendidos</h2>
+                    <table>
+                        <thead>
+                            <th>producto</th>
+                            <th>cantidad</th>
+                        </thead>
+
+                        <tbody>
+                             
+                            <% top10Productos.forEach(productoTop => {%>
+                                
+                                <tr>
+                                    <td><%=productoTop.producto%></td>
+                                    <td><%=productoTop.cantidad%></td>
+
+                                </tr>
+
+                            <%}); %> 
+                        </tbody>
+
+
+                    </table>
                 </div>
 
                 <div id="tablaTop10Ventas">
-                
-                
-                
-                
-                
+
+                    <h2>Top 10 mayores ventas</h2>
+
+                    <table>
+                        <thead>
+                            <th>id venta</th>
+                            <th>comprador</th>
+                            <th>valor total</th>
+                        </thead>
+
+                        <tbody>
+                             
+                            <% top10Ventas.forEach(ventaTop => {%>
+                                
+                                <tr>
+                                    <td><%=ventaTop.id%></td>
+                                    <td><%=ventaTop.comprador%></td>
+                                    <td><%=ventaTop.valorFinal%></td>
+
+                                </tr>
+
+                            <%}); %> 
+                        </tbody>
+
+
+                    </table>
                 
                 </div>
             
@@ -36,38 +78,53 @@
             
             
             <div id="divTablaTodasLasVentas">
+
+                <h2>Todas las ventas</h2>
+
                 <table id="tablaTodasLasVentas">
                     <thead>
                         <tr>
-                            <th>id_compra</th>
+                            <th>id</th>
                             <th>comprador</th>
+                            <th>productos</th>
                             <th>total</th>
+
                         </tr>
                     </thead>
                     <tbody>
                         <% ventas.forEach(venta => { %>
-                        <tr>
-                            <td><%=venta.id%></td>
-                            <td><%=venta.comprador%></td>
-                            <td><%=venta.valorFinal%></td>
-                        </tr>
-                        
-                        <tr>    
-                        <td>nombre del producto</td>
-                        <td>precio unitario</td>
-                        <td>cantidad</td>
-                        <td>precio acumulado</td>
-                        </tr>   
-                        
-                            <% venta.productos.forEach(producto => { %>
-                                <tr>
-                                <td><%=producto.nombre%></td>
-                                <td><%=producto.precio%></td>
-                                <td><%=producto.cantidad%></td>
-                                <td><%=producto.precio * producto.cantidad%></td>
-                                </tr>
-                            <% });%>
+                            <tr>
+                                <td><%=venta.id%></td>
+                                <td><%=venta.comprador%></td>
+                            
+                                <td>
+                                    <table class="tablaInterna">
+                                        <thead>
+                                            <th class="nombre">nombre</th>
+                                            <th class="precioU">precio P/U</th>
+                                            <th class="cant">cantidad</th>
+                                            <th class="acum">precio acum</th>
+                                            
+                                        </thead>
+                                            <tbody>
+                                                <% venta.productos.forEach(producto => { %>
+                                                    <tr>
+                                                    <td><%=producto.nombre%></td>
+                                                    <td><%=producto.precio%></td>
+                                                    <td><%=producto.cantidad%></td>
+                                                    <td><%=producto.precio * producto.cantidad%></td>
+                                                    </tr>
+                                                <% });%>
+                                            </tbody>
+                                        </table>
+                                    
+                            
+                                </td>
+                                <td><%=venta.valorFinal%></td>
+                                
+                            </tr>
                         <%});%>
+                        
                     </tbody>
                 </table>
             </div>

@@ -38,12 +38,10 @@ export const obtenerProductosYSusVentas = async () => {
                                 //atributes : ["nombre"]
                                 attributes : ["cantidad"]
                               },
-                              attributes : ["nombre", "id", "precio"]//categoria?? 
+                              attributes : ["nombre", "id", "precio"]
                             
   });      
-  //console.log(ProductosEnVentas);
-  //console.log("---------------------------");
-  //console.log(ProductosEnVentas[2].ventasProducto);
+
   
   
   const productos = await obtenerTodosLosProductos();
@@ -53,7 +51,7 @@ export const obtenerProductosYSusVentas = async () => {
 
     listaProductosCantidad.push({
       producto : prod.nombre,
-      cantidad : 0
+      cantidad :0
     });
   });
 
@@ -92,7 +90,6 @@ export const obtenerVentasCompletas = async () => {
       }]
     });
 
-    //let coso = (await ventasYProductos).map()
 
     let ventasCompletas = []
 
@@ -134,9 +131,58 @@ export const obtenerVentasCompletas = async () => {
 
 
 
-  return ventasCompletas;//ventasYProductos;
+  return ventasCompletas;
 }
 
+
+export const obtenerTop10ProductosVendidos = async () => {
+
+  const productos = await obtenerProductosYSusVentas();
+
+  let top10vendidos = [];
+
+  productos.forEach(producto => {
+    
+    top10vendidos.push(producto);
+    
+    top10vendidos.sort((a, b) => b.cantidad - a.cantidad); 
+
+    if(top10vendidos.length === 11){
+      top10vendidos.pop();
+    }
+
+    
+  });
+
+
+
+  return top10vendidos;
+};
+
+
+export const obtenerTop10VentasMasCaras = async () => {
+
+  const ventas = await obtenerVentasCompletas();
+
+  let top10ventas = [];
+
+  ventas.forEach(venta => {
+    
+    top10ventas.push(venta);
+    
+    top10ventas.sort((a, b) => b.valorFinal - a.valorFinal); 
+
+    if(top10ventas.length === 11){
+      top10vetas.pop();
+    }
+
+    
+  });
+
+
+
+  return top10ventas;
+};
 
 
 

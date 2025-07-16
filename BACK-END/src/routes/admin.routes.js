@@ -8,7 +8,7 @@ import { requiereAutenticacion } from "../middlewares/autenticacion.middleware.j
 import { inyeccionInputs } from "../middlewares/inyeccion.middleware.js"
 import { uploadImage } from "../middlewares/uploadImage.middleware.js"
 import { verificarAdmin } from "../services/admin.service.js";
-import { obtenerVentasCompletas, obtenerProductosYSusVentas } from "../services/ventas.service.js";
+import { obtenerVentasCompletas, obtenerProductosYSusVentas, obtenerTop10ProductosVendidos, obtenerTop10VentasMasCaras } from "../services/ventas.service.js";
 
 const router = express.Router();
 
@@ -152,16 +152,10 @@ router.get("/admin/ventas", requiereAutenticacion, async (req, res) => {
   const productosConCantidad = await obtenerProductosYSusVentas();
 
   const ventas = await obtenerVentasCompletas();
+  
 
-  let top10Productos = [];
-  let top10Ventas = [];
-
-  productosConCantidad.forEach(prodC => {
-    //filtrar los 10 mejores y ordenarlos
-  });
-  ventas.forEach(prodC => {
-    //filtrar los 10 mejores y ordenarlos
-  });
+  let top10Productos = await obtenerTop10ProductosVendidos();
+  let top10Ventas = await obtenerTop10VentasMasCaras();
 
   console.log(ventas);
 
